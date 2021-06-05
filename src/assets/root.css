@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap'); /* Lato (Regular) */
+@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@700&display=swap'); /* Charmonman (Bold) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); /* Montserrat (Regular) */
+@import url('https://fonts.googleapis.com/css2?family=Montez&display=swap'); /* Montez (Regular) */
+
+:root {
+  /* Colors */
+  --bg-primary: #D8E3E7;
+  --bg-secondary: #EEEEEE9C;
+  --bg-navbar: #ADD0D8;
+  --bg-button: #132C33;
+  --bg-button-red: #E14F4F;
+  --text-primary: #000000ab;
+  --text-secondary: #00000082;
+  --text-navbar: #2C6778;
+  --bg-violet: #a586ff;
+
+  /* Other */
+  --grad-pink: linear-gradient(180deg, rgb(239, 93, 168, 1) 0%, rgba(18, 110, 130, 1) 100%);
+  --grad-pink-inv: linear-gradient(0deg, rgb(239, 93, 168, 1) 0%, rgba(18, 110, 130, 1) 100%);
+  --grad-orange: linear-gradient(180deg, rgba(255, 134, 134, 1) 0%, rgba(18, 110, 130, 1) 100%);
+  --grad-violet: linear-gradient(180deg, rgba(165, 134, 255, 1) 0%, rgba(18, 110, 130, 1) 100%);
+
+  /* Fonts */
+  --font-primary: Montserrat, sans-serif;
+  --font-secondary: Lato, sans-serif;
+  --font-tertiary: Charmonman, sans-serif;
+  --font-quaternary: Montez, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  font-family: var(--font-primary);
+  color: var(--text-primary);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+button {
+  outline: none;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
