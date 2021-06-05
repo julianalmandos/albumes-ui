@@ -2,7 +2,11 @@
   <Layout>
     <template #title>Mis álbumes</template>
     <template #subtitle>Alministra tus álbumes</template>
-    <Album v-for="(album, index) in albums" :key="index"/>
+    <ul>
+      <li>
+        <Album v-for="(album, index) in albums" :key="index" :album="album"/>
+      </li>
+    </ul>
   </Layout>
 </template>
 
@@ -15,6 +19,28 @@ export default {
   components: {
     Album,
     Layout
+  },
+  data() {
+    return {
+      albums: [
+        {
+          id: 1,
+          name: 'Album prueba',
+          created: '2021-05-18T17:58:24.218506Z',
+          interviews: [
+            {
+                "id": 3,
+                "name": "Interview 03 - Dichato 02 - VIII Region - Sra Juana",
+                "youtube_video": {
+                    "code": "N617bK6pnjg",
+                    "thumbnail": "https://i.ytimg.com/vi/N617bK6pnjg/maxresdefault.jpg",
+                    "url": "https://www.youtube.com/watch?v=N617bK6pnjg"
+                }
+            },
+          ]
+        }
+      ]
+    }
   }
 }
 </script>
