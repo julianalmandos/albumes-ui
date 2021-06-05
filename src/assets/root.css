@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap'); /* Lato (Regular) */
 @import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@700&display=swap'); /* Charmonman (Bold) */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); /* Montserrat (Regular) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); /* Montserrat (Regular + Bold) */
 @import url('https://fonts.googleapis.com/css2?family=Montez&display=swap'); /* Montez (Regular) */
 
 :root {
@@ -50,4 +50,10 @@ button {
   font: inherit;
   color: inherit;
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font: inherit;
 }

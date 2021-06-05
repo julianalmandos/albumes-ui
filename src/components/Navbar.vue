@@ -4,25 +4,25 @@
       Álbumes
     </h1>
     <nav class="navbar__menu">
-      <NavbarButton>
+      <NavbarLink :to="'/new'">
         <template #icon><New/></template>
         <template #title>Crear álbum</template>
-      </NavbarButton>
-      <NavbarButton>
+      </NavbarLink>
+      <NavbarLink :to="'/'">
         <template #icon><Home/></template>
         <template #title>Página principal</template>
-      </NavbarButton>
-      <NavbarButton>
+      </NavbarLink>
+      <NavbarLink :to="'/albums'">
         <template #icon><List/></template>
         <template #title>Mis álbumes</template>
-      </NavbarButton>
+      </NavbarLink>
     </nav>
     <div></div>
   </header>
 </template>
 
 <script>
-import NavbarButton from '@/components/NavbarButton.vue';
+import NavbarLink from '@/components/NavbarLink.vue';
 import Home from '@/components/icons/Home.vue';
 import List from '@/components/icons/List.vue';
 import New from '@/components/icons/New.vue';
@@ -30,7 +30,7 @@ import New from '@/components/icons/New.vue';
 export default {
   name: 'Navbar',
   components: {
-    NavbarButton,
+    NavbarLink,
     Home,
     List,
     New

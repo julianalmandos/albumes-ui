@@ -1,27 +1,34 @@
 <template>
-  <button class="button">
+  <router-link class="anchor" :to="to">
     <slot name="icon"></slot>
     <slot name="title"></slot>
-  </button>
+  </router-link>
 </template>
 
 <script>
 export default {
-  name: 'NavbarButton'
+  name: 'NavbarLink',
+  props: {
+    to: {
+      type: String
+    }
+  }
 }
 </script>
 
 <style>
-.button {
+.anchor {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
 
   font-weight: bold;
+  text-decoration: none;
+  color: inherit;
 }
 
-.button > * {
+.anchor > * {
   margin-bottom: 0.5rem;
 }
 </style>

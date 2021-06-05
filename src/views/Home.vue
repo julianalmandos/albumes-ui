@@ -51,7 +51,7 @@ export default {
 }
 
 .home__subtitle {
-  width: 60ch;
+  width: min(60ch, 85%);
   margin-top: 2rem;
   font-size: 1.75rem;
 }
