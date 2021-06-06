@@ -58,3 +58,8 @@ a {
   color: inherit;
   font: inherit;
 }
+
+select {
+  font: inherit;
+  color: inherit;
+}

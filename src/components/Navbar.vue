@@ -47,6 +47,7 @@ export default {
   width: 100%;
   background-color: var(--bg-navbar);
   color: var(--text-navbar);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
 }
 
 .navbar__logo {

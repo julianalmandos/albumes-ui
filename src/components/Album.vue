@@ -1,6 +1,6 @@
 <template>
   <div class="album">
-    <youtube :player-height="200" :player-width="350" :video-id="youtubeVideo"></youtube>
+    <youtube :player-height="150" :player-width="300" :video-id="youtubeVideo"></youtube>
     <div class="album__information">
       <div class="album__description">
         <h3 class="album__title">{{album.name}}</h3>

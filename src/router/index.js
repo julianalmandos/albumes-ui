@@ -1,9 +1,10 @@
+import Albums from '../views/Albums.vue'
+import Configuration from '../views/Configuration.vue'
+import Dashboard from '../views/Dashboard.vue'
+import Home from '../views/Home.vue'
+import NewAlbum from '../views/NewAlbum.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Dashboard from '../views/Dashboard.vue'
-import Albums from '../views/Albums.vue'
-import NewAlbum from '../views/NewAlbum.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/new',
     name: 'NewAlbum',
     component: NewAlbum
+  },
+  {
+    path: '/configuration',
+    name: 'Configuration',
+    component: Configuration
   }
 ]
 
