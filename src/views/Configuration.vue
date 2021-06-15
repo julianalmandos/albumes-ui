@@ -19,7 +19,7 @@
         v-model.number="elementsPerPageValue"
       ></CSelect>
       <div class="configuration__buttons">
-        <router-link class="buttons__cancel" to="/">
+        <router-link class="buttons__cancel" to="/dashboard">
           <CButton variant="red large" type="button">Cancelar</CButton>
         </router-link>
         <CButton variant="large" type="submit">Guardar</CButton>

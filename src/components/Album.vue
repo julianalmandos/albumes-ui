@@ -1,6 +1,6 @@
 <template>
   <div class="album">
-    <GalleryThumbnail v-if="album" :interviews="album.interviews" />
+    <GalleryThumbnail :interviews="album.interviews.slice(0, 3)" />
     <div class="album__information">
       <div class="album__description">
         <h3 class="album__title">{{album.name}}</h3>

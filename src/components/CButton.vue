@@ -74,6 +74,7 @@ export default {
 .button[variant~="white"] {
   background-color: var(--bg-button-white);
   color: var(--bg-button);
+  fill: var(--bg-button);
 }
 
 .button[variant~="white"]:hover {
