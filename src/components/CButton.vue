@@ -43,6 +43,10 @@ export default {
   font-size: 0.9rem;
 }
 
+.button:hover {
+  background-color: var(--bg-button-hover);
+}
+
 .button__left + .button__text {
   margin-left: 0.25rem;
 }
@@ -62,12 +66,24 @@ export default {
   background-color: var(--bg-button-red);
 }
 
+.button[variant~="red"]:hover {
+  background-color: var(--bg-button-red-hover);
+}
+
 .button[variant~="white"] {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-button-white);
   color: var(--bg-button);
+}
+
+.button[variant~="white"]:hover {
+  background-color: var(--bg-button-white-hover);
 }
 
 .button[variant~="large"] {
   padding: 0.75rem 3rem;
+}
+
+.button[variant~="squared"] {
+  border-radius: 0px;
 }
 </style>

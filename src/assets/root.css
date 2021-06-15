@@ -10,7 +10,11 @@
   --bg-tertiary: #DEF5FE;
   --bg-navbar: #ADD0D8;
   --bg-button: #132C33;
+  --bg-button-hover: #204955;
   --bg-button-red: #E14F4F;
+  --bg-button-red-hover: #dd3737;
+  --bg-button-white: #D8E3E7;
+  --bg-button-white-hover: #bbc6ca;
   --text-primary: #000000ab;
   --text-secondary: #00000082;
   --text-navbar: #2C6778;

@@ -1,9 +1,9 @@
 <template>
-  <header class="navbar">
+  <header :class="['navbar', { 'navbar--centered': isHome }]">
     <h1 class="navbar__logo">
       Álbumes
     </h1>
-    <nav class="navbar__menu">
+    <nav v-if="!isHome" class="navbar__menu">
       <NavbarLink :to="'/new'">
         <template #icon><New/></template>
         <template #title>Crear álbum</template>
@@ -17,7 +17,7 @@
         <template #title>Mis álbumes</template>
       </NavbarLink>
     </nav>
-    <div></div>
+    <div v-if="!isHome"></div>
   </header>
 </template>
 
@@ -34,6 +34,11 @@ export default {
     Home,
     List,
     New
+  },
+  computed: {
+    isHome() {
+      return this.$route.name === 'Home';
+    }
   }
 }
 </script>
@@ -65,5 +70,16 @@ export default {
 
 .navbar__menu > *:not(:last-child) {
   margin-right: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .navbar--centered {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar--centered .navbar__logo {
+    margin: 0;
+  }
 }
 </style>
