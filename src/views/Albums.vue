@@ -7,7 +7,7 @@
     </div>
 
     <ul v-show="!isLoading">
-      <li>
+      <li class="albums__list">
         <Album
           v-for="(album, index) in albums"
           :key="index"
@@ -87,6 +87,7 @@ export default {
   background-color: rgba(255, 255, 255, 0.7);
   position: absolute;
   inset: 0;
+  z-index: 2;
 }
 
 .modal__dialog {
@@ -113,5 +114,11 @@ export default {
 .modal__buttons {
   display: flex;
   gap: 2rem;
+}
+
+.albums__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 </style>

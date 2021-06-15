@@ -1,6 +1,6 @@
 <template>
   <div class="album">
-    <youtube :player-height="150" :player-width="300" :video-id="youtubeVideo"></youtube>
+    <GalleryThumbnail v-if="album" :interviews="album.interviews" />
     <div class="album__information">
       <div class="album__description">
         <h3 class="album__title">{{album.name}}</h3>
@@ -21,11 +21,13 @@
             Editar
           </CButton>
         </div>
-        <CButton @click="$emit('deleteAlbum', album.id)" variant="red">
-          <template #left-icon>
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2m-9-14c0-.552-.448-1-1-1s-1 .448-1 1v9c0 .552.448 1 1 1s1-.448 1-1v-9zm6 0c0-.552-.448-1-1-1s-1 .448-1 1v9c0 .552.448 1 1 1s1-.448 1-1v-9zm6-5h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-12-2h4v-1h-4v1z"/></svg>
-          </template>
-        </CButton>
+        <div class="album__delete">
+          <CButton @click="$emit('deleteAlbum', album.id)" variant="red">
+            <template #left-icon>
+              <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2m-9-14c0-.552-.448-1-1-1s-1 .448-1 1v9c0 .552.448 1 1 1s1-.448 1-1v-9zm6 0c0-.552-.448-1-1-1s-1 .448-1 1v9c0 .552.448 1 1 1s1-.448 1-1v-9zm6-5h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-12-2h4v-1h-4v1z"/></svg>
+            </template>
+          </CButton>          
+        </div>
       </div>
     </div>
   </div>
@@ -33,11 +35,13 @@
 
 <script>
 import CButton from '@/components/CButton.vue';
+import GalleryThumbnail from '@/components/GalleryThumbnail.vue';
 
 export default {
   name: 'Album',
   components: {
-    CButton
+    CButton,
+    GalleryThumbnail
   },
   props: [
     'album'
@@ -55,18 +59,13 @@ export default {
 
 <style>
 .album {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   background-color: var(--bg-tertiary);
-  width: 100%;
   padding: 2rem;
   gap: 2rem;
   border-radius: 15px;
   margin: 1rem;
-}
-
-.album > * {
-  flex: 1;
+  width: 60%;
 }
 
 .album__information {
@@ -74,6 +73,8 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  flex: 2;
+  padding: 0.5rem;
 }
 
 .album__description {
@@ -82,17 +83,18 @@ export default {
 
 .album__title {
   color: var(--text-navbar);
-  font-size: 2.25rem;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
 }
 
 .album__date {
   font-family: var(--font-secondary);
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-top: 0.5rem;
 }
 
 .album__actions {
   display: flex;
+  margin-top: 2rem;
   width: 100%;
   justify-content: space-between;
 }
@@ -101,7 +103,20 @@ export default {
   display: flex;
 }
 
-.album__edition > *:first-child {
+.album__edition > * {
   margin-right: 0.5rem;
+}
+
+.album__delete {
+  display: flex;
+  justify-self: flex-end;
+}
+
+
+@media (max-width: 1220px) {
+  .album {
+    flex-wrap: wrap;    
+    width: 100%;
+  }
 }
 </style>
