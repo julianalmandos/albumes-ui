@@ -9,7 +9,7 @@
       v-if="firstBackgroundInterview"
       :src="firstBackgroundInterview.youtube_video.thumbnail"
       :alt="firstBackgroundAlternativeText">
-    <img class="thumbnail__first-background" 
+    <img class="thumbnail__second-background" 
       v-if="secondBackgroundInterview"
       :src="secondBackgroundInterview.youtube_video.thumbnail"
       :alt="firstBackgroundAlternativeText">
