@@ -20,6 +20,14 @@
             </template>
             Editar
           </CButton>
+          <a :href="downloadLink" download> 
+            <CButton>
+              <template #left-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16 11h5l-9 10-9-10h5v-11h8v11zm1 11h-10v2h10v-2z"/></svg>
+              </template>
+              Descargar
+            </CButton>
+          </a>
         </div>
         <div class="album__delete">
           <CButton @click="$emit('deleteAlbum', album.id)" variant="red">
@@ -37,6 +45,8 @@
 import CButton from '@/components/CButton.vue';
 import GalleryThumbnail from '@/components/GalleryThumbnail.vue';
 
+import api from '@/services/index'
+
 export default {
   name: 'Album',
   components: {
@@ -52,12 +62,16 @@ export default {
     },
     youtubeVideo() {
       return this.album.interviews[0].youtube_video.code;
+    },
+    downloadLink() {
+      const baseURL = api.defaults.baseURL
+      return baseURL + `albums/${this.album.id}/download/`
     }
   },
   methods: {
     goToAlbum(id) {
       this.$router.push({ name: 'AlbumDetail', params: { id } })
-    }
+    },
   }
 }
 </script>
@@ -70,7 +84,7 @@ export default {
   gap: 2rem;
   border-radius: 15px;
   margin: 1rem;
-  width: 60%;
+  width: 65%;
 }
 
 .album__information {
@@ -102,6 +116,8 @@ export default {
   margin-top: 2rem;
   width: 100%;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .album__edition {
