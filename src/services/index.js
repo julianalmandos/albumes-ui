@@ -9,4 +9,9 @@ api.getAlbums = async () => {
 	return response.data
 }
 
+api.getAlbumById = async (id) => {
+	const response = await api.get(`albums/${id}/`)
+	return response.data
+}
+
 export default api
