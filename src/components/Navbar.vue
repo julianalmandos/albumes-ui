@@ -17,7 +17,7 @@
         <template #title>Mis álbumes</template>
       </NavbarLink>
     </nav>
-    <div v-if="!isHome"></div>
+    <div v-if="!isHome" class="navbar__user"></div>
   </header>
 </template>
 
@@ -45,8 +45,7 @@ export default {
 
 <style>
 .navbar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   align-items: center;
   height: 4.5rem;
   width: 100%;
@@ -61,11 +60,18 @@ export default {
   font-weight: bold;
   margin-left: 2rem;
   padding-top: 1rem;
+  flex: 1 0 auto;
 }
 
 .navbar__menu {
   display: flex;
   justify-content: center;
+  flex: 0 1 auto;
+}
+
+.navbar__user,
+.navbar__logo {
+  flex: 1;
 }
 
 .navbar__menu > *:not(:last-child) {
@@ -80,6 +86,10 @@ export default {
 
   .navbar--centered .navbar__logo {
     margin: 0;
+  }
+
+  .navbar__menu {
+    visibility: hidden;
   }
 }
 </style>
