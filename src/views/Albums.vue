@@ -2,7 +2,11 @@
   <Layout>
     <template #title>Mis álbumes</template>
     <template #subtitle>Alministra tus álbumes</template>
-    <ul>
+    <div v-show="isLoading">
+      <Loader></Loader>
+    </div>
+
+    <ul v-show="!isLoading">
       <li>
         <Album
           v-for="(album, index) in albums"
@@ -29,9 +33,10 @@
 </template>
 
 <script>
-import Album from '@/components/Album.vue';
-import CButton from '@/components/CButton.vue';
-import Layout from '@/components/Layout.vue';
+import Album from '@/components/Album.vue'
+import CButton from '@/components/CButton.vue'
+import Layout from '@/components/Layout.vue'
+import Loader from '@/components/share/Loader.vue'
 
 import api from '@/services/index'
 
@@ -40,16 +45,20 @@ export default {
   components: {
     Album,
     CButton,
-    Layout
+    Layout,
+    Loader
   },
   data() {
     return {
       albums: [],
-      showModal: false
+      showModal: false,
+      isLoading: false
     }
   },
   async created() {
+    this.isLoading = true
     this.albums = await api.getAlbums()
+    this.isLoading = false
   },
   methods: {
     getAlbumName(albumId) {
