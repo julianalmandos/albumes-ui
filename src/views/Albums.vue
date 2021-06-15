@@ -33,6 +33,8 @@ import Album from '@/components/Album.vue';
 import CButton from '@/components/CButton.vue';
 import Layout from '@/components/Layout.vue';
 
+import api from '@/services/index'
+
 export default {
   name: 'Albums',
   components: {
@@ -42,26 +44,12 @@ export default {
   },
   data() {
     return {
-      albums: [
-        {
-          id: 1,
-          name: 'Album prueba',
-          created: '2021-05-18T17:58:24.218506Z',
-          interviews: [
-            {
-                "id": 3,
-                "name": "Interview 03 - Dichato 02 - VIII Region - Sra Juana",
-                "youtube_video": {
-                    "code": "N617bK6pnjg",
-                    "thumbnail": "https://i.ytimg.com/vi/N617bK6pnjg/maxresdefault.jpg",
-                    "url": "https://www.youtube.com/watch?v=N617bK6pnjg"
-                }
-            },
-          ]
-        }
-      ],
+      albums: [],
       showModal: false
     }
+  },
+  async created() {
+    this.albums = await api.getAlbums()
   },
   methods: {
     getAlbumName(albumId) {

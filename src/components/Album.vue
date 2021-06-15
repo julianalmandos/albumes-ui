@@ -58,10 +58,11 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   background-color: var(--bg-tertiary);
-  width: min(calc(4rem+700px), 80%);
+  width: 100%;
   padding: 2rem;
   gap: 2rem;
   border-radius: 15px;
+  margin: 1rem;
 }
 
 .album > * {
