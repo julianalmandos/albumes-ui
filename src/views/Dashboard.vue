@@ -35,7 +35,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  font-size: 1.75rem;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
   gap: 5rem 10rem;
   width: 90%;
 }
@@ -68,5 +68,21 @@ export default {
 .dashboard__button:hover {
   box-shadow: none;
   transform: translate(0.25rem, 0.25rem);
+}
+
+@media (max-width: 1024px) {
+  .dashboard__button {
+    flex-direction: row;
+    padding: 2rem 2.5rem;
+    width: auto;
+    max-width: 90%;
+  }
+
+  .dashboard__button > svg {
+    margin-bottom: 0;
+    margin-right: 1rem;
+    width: 4rem;
+    height: 4rem;
+  }
 }
 </style>

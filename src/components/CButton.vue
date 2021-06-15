@@ -35,12 +35,17 @@ export default {
   align-items: center;
 
   background-color: var(--bg-button);
+  box-shadow: var(--shadow-button);
   color: white;
   fill: white;
 
   border-radius: 7px;
   padding: 0.75em 0.75rem;
   font-size: 0.9rem;
+}
+
+.button:hover {
+  background-color: var(--bg-button-hover);
 }
 
 .button__left + .button__text {
@@ -62,12 +67,24 @@ export default {
   background-color: var(--bg-button-red);
 }
 
+.button[variant~="red"]:hover {
+  background-color: var(--bg-button-red-hover);
+}
+
 .button[variant~="white"] {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-button-white);
   color: var(--bg-button);
+}
+
+.button[variant~="white"]:hover {
+  background-color: var(--bg-button-white-hover);
 }
 
 .button[variant~="large"] {
   padding: 0.75rem 3rem;
+}
+
+.button[variant~="squared"] {
+  border-radius: 0px;
 }
 </style>

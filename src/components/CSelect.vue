@@ -49,7 +49,7 @@ export default {
 .select__label {
   background-color: var(--bg-navbar);
   color: var(--text-navbar);
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2vw, 1.5rem);
   padding: 0.35rem 1rem;
   border-radius: 11px 11px 0 0;
 }
@@ -60,5 +60,9 @@ export default {
   text-align: center;
   text-align-last:center; /* For Chrome */
   padding: 0.75rem;
+}
+
+.select__input:hover {
+  cursor: pointer;
 }
 </style>

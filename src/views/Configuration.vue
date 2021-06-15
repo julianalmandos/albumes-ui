@@ -1,6 +1,7 @@
 <template>
   <Layout>
     <template #title>Configuración</template>
+    <template #subtitle>Configure aspectos generales de la plataforma como el modo de color, el tamaño de la letra o el número de elementos por página.</template>
     <form class="configuration" @submit.prevent="saveConfiguration">
       <CSelect
         :label="'Colores'"
@@ -18,7 +19,7 @@
         v-model.number="elementsPerPageValue"
       ></CSelect>
       <div class="configuration__buttons">
-        <router-link to="/">
+        <router-link class="buttons__cancel" to="/">
           <CButton variant="red large" type="button">Cancelar</CButton>
         </router-link>
         <CButton variant="large" type="submit">Guardar</CButton>
@@ -94,7 +95,7 @@ export default {
   flex-direction: column;
   align-items: center;
 
-  width: min(400px, 85%);
+  width: min(400px, 80%);
 }
 
 .configuration > .select:not(:last-child) {
@@ -105,5 +106,25 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+@media (max-width: 720px) {
+  .configuration__buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .buttons__cancel {
+    order: 2;
+  }
+
+  .configuration__buttons > *:last-child {
+    order: 1;
+    margin-bottom: 1rem;
+  }
+
+  .buttons__cancel > button {
+    width: 100%;
+  }
 }
 </style>

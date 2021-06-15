@@ -10,8 +10,12 @@
   --bg-tertiary: #DEF5FE;
   --bg-navbar: #ADD0D8;
   --bg-button: #132C33;
+  --bg-button-hover: #1a3e49;
   --bg-button-red: #E14F4F;
   --bg-loader: '#2C6778';
+  --bg-button-red-hover: #dd3737;
+  --bg-button-white: #D8E3E7;
+  --bg-button-white-hover: #bbc6ca;
   --text-primary: #000000ab;
   --text-secondary: #00000082;
   --text-navbar: #2C6778;
@@ -23,6 +27,8 @@
   --grad-pink-inv: linear-gradient(0deg, rgb(239, 93, 168, 1) 0%, rgba(18, 110, 130, 1) 100%);
   --grad-orange: linear-gradient(180deg, rgba(255, 134, 134, 1) 0%, rgba(18, 110, 130, 1) 100%);
   --grad-violet: linear-gradient(180deg, rgba(165, 134, 255, 1) 0%, rgba(18, 110, 130, 1) 100%);
+
+  --shadow-button: 0px 2px 4px rgba(0, 0, 0, 0.25);
 
   /* Fonts */
   --font-primary: Montserrat, sans-serif;

@@ -1,9 +1,9 @@
 <template>
-  <header class="navbar">
+  <header :class="['navbar', { 'navbar--centered': isHome }]">
     <h1 class="navbar__logo">
       Álbumes
     </h1>
-    <nav class="navbar__menu">
+    <nav v-if="!isHome" class="navbar__menu">
       <NavbarLink :to="'/new'">
         <template #icon><New/></template>
         <template #title>Crear álbum</template>
@@ -17,7 +17,7 @@
         <template #title>Mis álbumes</template>
       </NavbarLink>
     </nav>
-    <div></div>
+    <div v-if="!isHome" class="navbar__user"></div>
   </header>
 </template>
 
@@ -34,27 +34,31 @@ export default {
     Home,
     List,
     New
+  },
+  computed: {
+    isHome() {
+      return this.$route.name === 'Home';
+    }
   }
 }
 </script>
 
 <style>
 .navbar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   align-items: center;
   height: 4.5rem;
   width: 100%;
   background-color: var(--bg-navbar);
   color: var(--text-navbar);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+  padding: 0 2rem;
 }
 
 .navbar__logo {
   font-size: 2rem;
   font-family: var(--font-tertiary);
   font-weight: bold;
-  margin-left: 2rem;
   padding-top: 1rem;
 }
 
@@ -63,7 +67,27 @@ export default {
   justify-content: center;
 }
 
+.navbar__user,
+.navbar__logo {
+  flex: 1;
+}
+
 .navbar__menu > *:not(:last-child) {
   margin-right: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .navbar--centered {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar--centered .navbar__logo {
+    margin: 0;
+  }
+
+  .navbar__menu {
+    visibility: hidden;
+  }
 }
 </style>

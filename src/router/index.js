@@ -33,6 +33,10 @@ const routes = [
     path: '/configuration',
     name: 'Configuration',
     component: Configuration
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 

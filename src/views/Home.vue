@@ -18,15 +18,25 @@
     </ol>
     <div class="home__login">
       <h4>¡Comenza ya!</h4>
+      <router-link to="/">
+        <CButton variant="red squared">
+          <template #left-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 11v2.4h3.97c-.16 1.029-1.2 3.02-3.97 3.02-2.39 0-4.34-1.979-4.34-4.42 0-2.44 1.95-4.42 4.34-4.42 1.36 0 2.27.58 2.79 1.08l1.9-1.83c-1.22-1.14-2.8-1.83-4.69-1.83-3.87 0-7 3.13-7 7s3.13 7 7 7c4.04 0 6.721-2.84 6.721-6.84 0-.46-.051-.81-.111-1.16h-6.61zm0 0 17 2h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
+          </template>
+          Continuar con Google
+        </CButton>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
+import CButton from '@/components/CButton.vue';
 
 export default {
   name: 'Home',
   components: {
+    CButton
   }
 }
 </script>
@@ -47,13 +57,14 @@ export default {
 .home__title {
   color: var(--text-primary);
   font-family: var(--font-primary);
-  font-size: 4rem;
+  font-size: clamp(2rem, 3.5vw, 4rem);
+  max-width: 85%;
 }
 
 .home__subtitle {
   width: min(60ch, 85%);
   margin-top: 2rem;
-  font-size: 1.75rem;
+  font-size: clamp(1rem, 3vw, 1.75rem);
 }
 
 .home__steps {
@@ -63,7 +74,7 @@ export default {
   flex-wrap: wrap;
 
   gap: 3rem;
-  margin-top: 4rem;
+  margin: 4rem 0;
 }
 
 .home__step {
@@ -72,24 +83,27 @@ export default {
 
 .home__step > span {
   display: block;
-  font-size: 9.25rem;
+  font-size: clamp(6rem, 7vw, 9.25rem);
   font-family: var(--font-quaternary);
 }
 
 .home__step > p {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
 .home__login {
-  margin-top: 4rem;
   padding: 3rem;
   width: 100%;
   background-color: var(--bg-secondary);
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .home__login > h4 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin-bottom: 2rem;
 }
 
 .home__step > span,
