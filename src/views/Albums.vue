@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #title>Mis álbumes</template>
-    <template #subtitle>Alministra tus álbumes</template>
+    <template #subtitle>Administra tus álbumes</template>
     <ul>
       <li>
         <Album

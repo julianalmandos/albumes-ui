@@ -52,21 +52,19 @@ export default {
   background-color: var(--bg-navbar);
   color: var(--text-navbar);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+  padding: 0 2rem;
 }
 
 .navbar__logo {
   font-size: 2rem;
   font-family: var(--font-tertiary);
   font-weight: bold;
-  margin-left: 2rem;
   padding-top: 1rem;
-  flex: 1 0 auto;
 }
 
 .navbar__menu {
   display: flex;
   justify-content: center;
-  flex: 0 1 auto;
 }
 
 .navbar__user,

@@ -29,7 +29,7 @@ export default {
 
 .section__subtitle {
   margin: 2rem 0 3rem 0;
-  width: min(20ch, 85%);
+  width: min(60ch, 85%);
   color: var(--text-secondary);
   font-size: clamp(1.25rem, 3vw, 1.75rem);
 }

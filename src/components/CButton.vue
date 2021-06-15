@@ -35,6 +35,7 @@ export default {
   align-items: center;
 
   background-color: var(--bg-button);
+  box-shadow: var(--shadow-button);
   color: white;
   fill: white;
 
