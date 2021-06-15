@@ -4,15 +4,15 @@
     <h3 class="home__subtitle">Creá, elegí e imprimí tus propios álbumes para concientizar a la población sobre desastres naturales.</h3>
     <ol class="home__steps">
       <li class="home__step">
-        <span>1</span>
+        <FirstStep />        
         <p>Crea un álbum interactivo con fotos y códigos QR accesibles.</p>
       </li>
       <li class="home__step">
-        <span>2</span>
+        <SecondStep />
         <p>Elegí entre las más de 10 entrevistas a sobrevivientes de desastres naturales.</p>
       </li>
       <li class="home__step">
-        <span>3</span>
+        <ThirdStep />
         <p>Imprimí tu álbum de fotos junto a los códigos QR relacionados.</p>
       </li>
     </ol>
@@ -33,10 +33,18 @@
 <script>
 import CButton from '@/components/CButton.vue';
 
+import FirstStep from '@/components/icons/FirstStep.vue';
+import SecondStep from '@/components/icons/SecondStep.vue';
+import ThirdStep from '@/components/icons/ThirdStep.vue';
+
+
 export default {
   name: 'Home',
   components: {
-    CButton
+    CButton,
+    FirstStep,
+    SecondStep,
+    ThirdStep
   }
 }
 </script>
@@ -81,14 +89,9 @@ export default {
   width: min(300px, 80%);
 }
 
-.home__step > span {
-  display: block;
-  font-size: clamp(6rem, 7vw, 9.25rem);
-  font-family: var(--font-quaternary);
-}
-
 .home__step > p {
   font-size: clamp(1rem, 3vw, 1.5rem);
+  margin-top: 1rem;
 }
 
 .home__login {
