@@ -9,7 +9,7 @@ const { SUCCESS, ERROR, EMPTY, LOADING } = RequestStatus
 
 const requests = {
   state: {
-    requestStatus: null
+    requestStatus: SUCCESS
   },
   getters: {
     isLoading: state => state.requestStatus === LOADING,
