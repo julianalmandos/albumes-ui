@@ -55,9 +55,9 @@ export default {
     CButton,
     GalleryThumbnail
   },
-  props: [
-    'album'
-  ],
+  props: {
+    album: { type: Object, required: true }
+  },
   computed: {
     parsedDate() {
       return this.album.created.split('T')[0].split('-').reverse().join('/');
@@ -71,6 +71,8 @@ export default {
     },
     thumbnails() {
       const { interviews } = this.album
+
+      console.log(this.album.name)
 
       return interviews.map((interview) => {
         const { thumbnail } = interview.youtube_video

@@ -8,11 +8,10 @@
   </div>
 </template>
 <script>
-  import api from '@/services/index'
-
   import LightBox from 'vue-it-bigger'
   import('vue-it-bigger/dist/vue-it-bigger.min.css')
 
+  import { mapState } from 'vuex'
 
   export default {
     name: 'AlbumDetail',
@@ -21,30 +20,33 @@
       LightBox,
     },
 
-    data() {
-      return {
-        album: {},
-        media: []
+    computed: {
+      ...mapState({
+        album: state => state.albumsStore.album
+      }),
+      media() {
+        if (!this.album.interviews) { return [] };
+
+        return this.album.interviews.map((interview) => {
+          return {
+            type: 'youtube',
+            thumb: interview.youtube_video.thumbnail,
+            id: interview.youtube_video.code,
+            caption: interview.name
+          }
+        })
       }
     },
 
-    async created() {
+    created() {
       const id = this.$route.params.id
-
-      const album = await api.getAlbumById(id)
-
-      this.album = album
-      this.media = this.album.interviews.map((interview) => {
-        return {
-          type: 'youtube',
-          thumb: interview.youtube_video.thumbnail,
-          id: interview.youtube_video.code,
-          caption: interview.name
-        }
-      })
+      this.getAlbumById(id)
     },
 
     methods: {
+      getAlbumById(id) {
+        this.$store.dispatch('getAlbumById', id)
+      },
       goToAlbumList() {
         this.$router.push({ name: 'Albums' })
       }

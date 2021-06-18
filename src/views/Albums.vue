@@ -12,6 +12,7 @@
           @deleteAlbum="showDeleteAlbumModal"
         />
       </li>
+
     </ul>
 
     <div v-if="showModal" class="modal">
@@ -37,7 +38,7 @@ import CButton from '@/components/CButton.vue'
 import Layout from '@/components/Layout.vue'
 import Loader from '@/components/share/Loader.vue'
 
-import api from '@/services/index'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Albums',
@@ -49,12 +50,13 @@ export default {
   },
   data() {
     return {
-      albums: [],
-      showModal: false,
+      showModal: false
     }
   },
-  async created() {
-    this.albums = await api.getAlbums()
+  computed: {
+    ...mapState({
+      albums: state => state.albumsStore.albums
+    })
   },
   methods: {
     getAlbumName(albumId) {
@@ -71,7 +73,13 @@ export default {
     deleteAlbum() {
       this.hideModal();
       // TODO: delete album
+    },
+    getAlbums() {
+      this.$store.dispatch('getAlbums')
     }
+  },
+  created() {
+    this.getAlbums()
   }
 }
 </script>
