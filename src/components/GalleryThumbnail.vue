@@ -1,51 +1,34 @@
 <template>
-  <div v-if="interviews" class="thumbnail">
-    <img class="thumbnail__frontground" 
-      v-if="frontgroundInterview"
-      :src="frontgroundInterview.youtube_video.thumbnail"
-      :alt="frontgroundAlternativeText"
-      >
-    <img class="thumbnail__first-background" 
-      v-if="firstBackgroundInterview"
-      :src="firstBackgroundInterview.youtube_video.thumbnail"
-      :alt="firstBackgroundAlternativeText">
-    <img class="thumbnail__second-background" 
-      v-if="secondBackgroundInterview"
-      :src="secondBackgroundInterview.youtube_video.thumbnail"
-      :alt="secondBackgroundAlternativeText">
-  </div>    
+  <div class="thumbnail">
+    <img v-for="(thumbnail, index) in getThumbnails"
+      :key="index"
+      :class="getClass(index)"
+      :src="thumbnail.img"
+      :alt="thumbnail.alt"
+    />
+  </div>
 </template>
 <script>
+const numberOfThumbnails = 3
+
 export default {
   name: 'GalleryThumbnail',
-  props: ['interviews'],
+  props: {
+    'thumbnails': {
+      type: Array,
+      default: [],
+      required: true
+    }
+  },
+  methods: {
+    getClass(index) {
+      return `thumbnail__image_${index}`
+    }
+  },
   computed: {
-    frontgroundInterview() {
-      if (this.interviews.length === 0) return null;
-      return this.interviews[0]
-    },
-
-    frontgroundAlternativeText() {
-      return `Primera imagen de la entrevista ${this.frontgroundInterview.name}`
-    },
-
-    firstBackgroundInterview() {
-      if (this.interviews.length === 1) return null;
-      return this.interviews[1]
-    },
-
-    firstBackgroundAlternativeText() {
-      return `Segunda imagen de la entrevista ${this.firstBackgroundInterview.name}`
-    },
-
-    secondBackgroundInterview() {
-      if (this.interviews.length === 2) return null;
-      return this.interviews[2]
-    },
-
-    secondBackgroundAlternativeText() {
-      return `Segunda imagen de la entrevista ${this.secondBackgroundInterview.name}`
-    },
+    getThumbnails() {
+      return this.thumbnails.slice(0, numberOfThumbnails);
+    }
   }
 }
 </script>
@@ -53,29 +36,30 @@ export default {
 
 .thumbnail {
   display: flex;
+  flex:  1;
   justify-content: center;
-  flex: 1;
+  width: 300px;
+  height: 150px;
+  position: relative;
 }
 
 img {
-  width: 300px;
-  box-sizing: border-box;
-  flex: none;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  margin: auto;
 }
 
-.thumbnail__frontground {
+.thumbnail__image_0 {
   z-index: 1;
-  position: relative;
   box-shadow: 0px 0px 4px 0px #020202;
 }
 
-.thumbnail__first-background {
-  margin-left: -300px;
+.thumbnail__image_1 {
   transform: rotate(6deg);
 }
 
-.thumbnail__second-background {
-  margin-left: -300px;
+.thumbnail__image_2 {
   transform: rotate(3deg);
 }
     

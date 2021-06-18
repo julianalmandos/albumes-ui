@@ -1,6 +1,8 @@
 <template>
   <div class="album">
-    <GalleryThumbnail :interviews="album.interviews.slice(0, 3)" />
+    <GalleryThumbnail 
+      :thumbnails="thumbnails" 
+    />
     <div class="album__information">
       <div class="album__description">
         <h3 class="album__title">{{album.name}}</h3>
@@ -66,6 +68,18 @@ export default {
     downloadLink() {
       const baseURL = api.defaults.baseURL
       return baseURL + `albums/${this.album.id}/download/`
+    },
+    thumbnails() {
+      const { interviews } = this.album
+
+      return interviews.map((interview) => {
+        const { thumbnail } = interview.youtube_video
+
+        return {
+          img: thumbnail,
+          alt: `Entrevista '${interview.name}' del album '${this.album.name}'`
+        }
+      });
     }
   },
   methods: {

@@ -2,6 +2,7 @@
   <Layout>
     <template #title>Mis álbumes</template>
     <template #subtitle>Administra tus álbumes</template>
+    
     <div v-show="isLoading">
       <Loader></Loader>
     </div>
