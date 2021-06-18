@@ -1,12 +1,15 @@
 <template>
-	<div>
-		<rotate-square3 :size="size" :color="color"></rotate-square3>
-		<div class="loader__text" role="progressbar">Cargando</div>
-	</div>
+	<Layout>
+		<div>
+			<rotate-square3 :size="size" :color="color"></rotate-square3>
+			<div class="loader__text" role="progressbar">Cargando</div>
+		</div>
+	</Layout>
 </template>
 
 <script>
-  import {RotateSquare3} from 'vue-loading-spinner'
+  import { RotateSquare3 } from 'vue-loading-spinner'
+	import Layout from '@/components/Layout.vue';
 
   export default {
   	name: 'Loader',
@@ -19,7 +22,8 @@
   		}
   	},
     components: {
-      RotateSquare3
+      RotateSquare3,
+      Layout
     }
   }
 </script>

@@ -2,12 +2,8 @@
   <Layout>
     <template #title>Mis álbumes</template>
     <template #subtitle>Administra tus álbumes</template>
-    
-    <div v-show="isLoading">
-      <Loader></Loader>
-    </div>
 
-    <ul v-show="!isLoading">
+    <ul>
       <li class="albums__list">
         <Album
           v-for="(album, index) in albums"
@@ -17,6 +13,7 @@
         />
       </li>
     </ul>
+
     <div v-if="showModal" class="modal">
       <div class="modal__dialog">
         <p>{{modalMessage}}</p>
@@ -30,6 +27,7 @@
         </div>
       </div>
     </div>
+    
   </Layout>
 </template>
 
@@ -53,13 +51,10 @@ export default {
     return {
       albums: [],
       showModal: false,
-      isLoading: false
     }
   },
   async created() {
-    this.isLoading = true
     this.albums = await api.getAlbums()
-    this.isLoading = false
   },
   methods: {
     getAlbumName(albumId) {
