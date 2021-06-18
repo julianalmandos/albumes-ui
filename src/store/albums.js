@@ -17,9 +17,7 @@ const albumsStore = {
     async getAlbums({ commit, state }) {
       const { albums } = state
 
-      if (albums.length === 0) {
-        commit('setAlbums', await api.getAlbums())
-      }
+      commit('setAlbums', await api.getAlbums())
     },
 
     async getAlbumById({ commit, state }, id) {
