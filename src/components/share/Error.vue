@@ -1,16 +1,16 @@
 <template>
-	<Layout>
-		<div>
-			Error!
-		</div>
-	</Layout>
+  <Layout>
+    <div>
+      Error!
+    </div>
+  </Layout>
 </template>
 
 <script>
-	import Layout from '@/components/Layout.vue';
+  import Layout from '@/components/Layout.vue';
 
   export default {
-  	name: 'Error',
+    name: 'Error',
     components: {
       Layout
     }
@@ -18,5 +18,5 @@
 </script>
 
 <style>
-	
+  
 </style>
