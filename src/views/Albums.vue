@@ -92,6 +92,9 @@ export default {
   position: absolute;
   inset: 0;
   z-index: 2;
+
+  height: 100vh;
+  width: 100vw;
 }
 
 .modal__dialog {
@@ -101,18 +104,19 @@ export default {
   justify-content: center;
   text-align: center;
 
-  padding: 3rem 4rem;
-  border-radius: 12px;
   max-width: 85%;
+
+  padding: 2rem;
+  border-radius: 12px;
 
   background-color: var(--bg-button);
   color: white;
 }
 
 .modal__dialog > p {
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
   max-width: 30ch;
+  font-size: clamp(1.2rem, 3vw, 1.4rem);  
 }
 
 .modal__buttons {
