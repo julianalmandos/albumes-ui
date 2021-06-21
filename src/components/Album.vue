@@ -72,8 +72,6 @@ export default {
     thumbnails() {
       const { interviews } = this.album
 
-      console.log(this.album.name)
-
       return interviews.map((interview) => {
         const { thumbnail } = interview.youtube_video
 
@@ -100,7 +98,6 @@ export default {
   gap: 2rem;
   border-radius: 15px;
   margin: 1rem;
-  width: 65%;
 }
 
 .album__information {

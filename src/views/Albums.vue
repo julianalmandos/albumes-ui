@@ -42,22 +42,27 @@ import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Albums',
+
   components: {
     Album,
     CButton,
     Layout,
     Loader
   },
+
   data() {
     return {
-      showModal: false
+      showModal: false,
+      albumToRemove: null
     }
   },
+
   computed: {
     ...mapState({
       albums: state => state.albumsStore.albums
     })
   },
+
   methods: {
     getAlbumName(albumId) {
       return this.albums.find(album => album.id === albumId).name;
@@ -65,6 +70,8 @@ export default {
     showDeleteAlbumModal(albumId) {
       this.modalMessage = `¿Está seguro que desea eliminar el álbum "${this.getAlbumName(albumId)}"?`;
       this.showModal = true;
+
+      this.albumToRemove = albumId;
     },
     hideModal() {
       this.showModal = false;
@@ -72,14 +79,15 @@ export default {
     },
     deleteAlbum() {
       this.hideModal();
-      // TODO: delete album
+      this.$store.dispatch('deleteAlbum', this.albumToRemove);
     },
     getAlbums() {
-      this.$store.dispatch('getAlbums')
+      this.$store.dispatch('getAlbums');
     }
   },
+
   created() {
-    this.getAlbums()
+    this.getAlbums();
   }
 }
 </script>
