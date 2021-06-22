@@ -38,6 +38,7 @@ export default {
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   gap: 5rem 10rem;
   width: 90%;
+  padding: 2em;
 }
 
 .dashboard__button {
