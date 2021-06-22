@@ -10,6 +10,11 @@ api.getAlbums = async () => {
   return response.data
 }
 
+api.getInterviews = async () => {
+  const response = await api.get('interviews/')
+  return response.data
+}
+
 api.getAlbumById = async (id) => {
   const response = await api.get(`albums/${id}/`)
   return response.data
@@ -23,7 +28,7 @@ api.deleteAlbum = async (id) => {
 api.interceptors.request.use(config => {
     store.commit('loading')
     return config
-  }, error => {
+  }, () => {
     store.commit('error')
 })
 
@@ -36,7 +41,7 @@ api.interceptors.response.use(response => {
     }
     
     return response
-  }, error => {
+  }, () => {
     store.commit('error')
 })
 

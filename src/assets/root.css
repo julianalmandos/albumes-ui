@@ -21,6 +21,8 @@
   --text-navbar: #2C6778;
   --text-loader: #2C6778;
   --bg-violet: #a586ff;
+  --bg-button-blue: #91D7E8;
+  --bg-button-grey: #0000001a;
 
   /* Other */
   --grad-pink: linear-gradient(180deg, rgb(239, 93, 168, 1) 0%, rgba(18, 110, 130, 1) 100%);
@@ -69,7 +71,7 @@ a {
   font: inherit;
 }
 
-select {
+select, input {
   font: inherit;
   color: inherit;
 }

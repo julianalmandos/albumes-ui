@@ -6,6 +6,7 @@ import NewAlbum from '../views/NewAlbum.vue'
 import AlbumDetail from '../views/AlbumDetail.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store/index';
 
 Vue.use(VueRouter)
 
@@ -33,7 +34,11 @@ const routes = [
   {
     path: '/new',
     name: 'NewAlbum',
-    component: NewAlbum
+    component: NewAlbum,
+    beforeEnter(to, from, next) {
+      store.commit('resetData');
+      next();
+    }
   },
   {
     path: '/configuration',

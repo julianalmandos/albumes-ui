@@ -98,7 +98,7 @@ export default {
   width: min(400px, 80%);
 }
 
-.configuration > .select:not(:last-child) {
+.configuration > .input:not(:last-child) {
   margin-bottom: 2rem;
 }
 

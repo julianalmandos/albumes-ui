@@ -5,7 +5,6 @@ const albumsStore = {
     albums: [],
     album: {}
   },
-
   mutations: {
     setAlbums(state, albums) {
       state.albums = albums
@@ -17,30 +16,22 @@ const albumsStore = {
       state.albums = state.albums.filter(album => album.id !== id)
     }
   },
-
   actions: {
-    async getAlbums({ commit, state }) {
-      const { albums } = state
-
+    async getAlbums({ commit }) {
       commit('setAlbums', await api.getAlbums())
     },
 
     async getAlbumById({ commit, state }, id) {
       const { albums } = state
-      let album = {}
-
-      if (albums.length === 0) {
+      let album = albums.find(album => album.id === Number(id))
+      if (!album) {
         album = await api.getAlbumById(id)
-      } else {
-        album = albums.find(album => album.id === id)
       }
-
       commit('setAlbum', album)
     },
 
     async deleteAlbum({ commit }, id) {
       await api.deleteAlbum(id)
-      
       commit('deleteAlbum', id)
     }
   }

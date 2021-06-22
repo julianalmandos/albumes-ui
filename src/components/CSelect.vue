@@ -1,8 +1,8 @@
 <template>
-  <div class="select">
-    <label class="select__label" :for="name">{{label}}</label>
+  <CInput :name="name">
+    <template #label>{{label}}</template>
     <select
-      class="select__input"
+      class="select"
       :name="name"
       :value="value"
       @change="$emit('input', $event.target.value)"
@@ -13,12 +13,17 @@
         :value="option.value"
       >{{option.label}}</option>
     </select>
-  </div>
+  </CInput>
 </template>
 
 <script>
+import CInput from '@/components/CInput.vue';
+
 export default {
   name: 'CSelect',
+  components: {
+    CInput
+  },
   props: {
     name: {
       type: String
@@ -39,22 +44,6 @@ export default {
 
 <style>
 .select {
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  font-family: var(--font-secondary);
-}
-
-.select__label {
-  background-color: var(--bg-navbar);
-  color: var(--text-navbar);
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  padding: 0.35rem 1rem;
-  border-radius: 11px 11px 0 0;
-}
-
-.select__input {
   border: none;
   border-radius: 0 0 11px 11px;
   text-align: center;
@@ -62,7 +51,7 @@ export default {
   padding: 0.75rem;
 }
 
-.select__input:hover {
+.select:hover {
   cursor: pointer;
 }
 </style>
