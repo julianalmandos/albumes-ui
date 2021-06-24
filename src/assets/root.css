@@ -23,6 +23,7 @@
   --bg-violet: #a586ff;
   --bg-button-blue: #91D7E8;
   --bg-button-grey: #0000001a;
+  --bg-button-grey-hover: #00000010;
 
   /* Other */
   --grad-pink: linear-gradient(180deg, rgb(239, 93, 168, 1) 0%, rgba(18, 110, 130, 1) 100%);

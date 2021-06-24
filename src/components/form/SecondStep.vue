@@ -6,12 +6,14 @@
       <li class="selected-interview" v-for="(interview, index) in getSelectedInterviews" :key="interview.id">
         <span class="selected-interview__number">{{index + 1}}.</span>
         <img :alt="interview.name + ' video'" :src="interview.youtube_video.thumbnail"/>
-        <div class="selected-interview__buttons">
-          <button v-if="index !== 0" @click="moveUp(index)">
-            Mover hacia arriba
+        <div class="selected-interview__buttons"><!--SVGs inside this container should have an ALT text or sth for a11y-->
+          <button class="selected-interview__button" v-if="index !== 0" @click="moveUp(index)" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z"/></svg>
+            <span>Mover hacia arriba</span>
           </button>
-          <button v-if="index !== getSelectedInterviews.length - 1" @click="moveDown(index)">
-            Mover hacia abajo
+          <button class="selected-interview__button" v-if="index !== getSelectedInterviews.length - 1" @click="moveDown(index)" type="button">
+            <span>Mover hacia abajo</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg>
           </button>
         </div>
       </li>
@@ -86,15 +88,24 @@ export default {
   row-gap: 1rem;
 }
 
-.selected-interview__buttons > * {
+.selected-interview__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   background-color: var(--bg-button-grey);
-  width: 5rem;
-  font-size: 0.8rem;
-  font-weight: bold;
   color: var(--text-navbar);
   fill: var(--text-navbar);
-  padding: 0.5rem;
+
+  font-size: 0.8rem;
+  font-weight: bold;
   line-height: 1.2;
+  width: 5rem;
+  padding: 0.5rem;
+}
+
+.selected-interview__button:hover {
+  background-color: var(--bg-button-grey-hover);
 }
 
 @media (max-width: 1024px) {
@@ -106,6 +117,10 @@ export default {
 @media (max-width: 720px) {
   .selected-interview > img {
     width: 10rem;
+  }
+
+  .selected-interview__button > span {
+    display: none;
   }
 }
 </style>

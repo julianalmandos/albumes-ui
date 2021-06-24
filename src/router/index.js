@@ -1,5 +1,5 @@
 import Albums from '../views/Albums.vue'
-import Configuration from '../views/Configuration.vue'
+import Settings from '../views/Settings.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Home from '../views/Home.vue'
 import NewAlbum from '../views/NewAlbum.vue'
@@ -41,9 +41,9 @@ const routes = [
     }
   },
   {
-    path: '/configuration',
-    name: 'Configuration',
-    component: Configuration
+    path: '/settings',
+    name: 'Settings',
+    component: Settings
   },
   {
     path: '*',

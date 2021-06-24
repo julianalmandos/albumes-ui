@@ -59,7 +59,7 @@ export default {
 .button__left,
 .button__right,
 .button__left > svg,
-.button_right > svg {
+.button__right > svg {
   height: 1rem;
 }
 

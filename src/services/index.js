@@ -15,6 +15,11 @@ api.getInterviews = async () => {
   return response.data
 }
 
+api.getSettings = async () => {
+  const response = await api.get('settings/1/') //FIXME: this should depend on the user ID in the future.
+  return response.data
+}
+
 api.getAlbumById = async (id) => {
   const response = await api.get(`albums/${id}/`)
   return response.data
@@ -22,6 +27,15 @@ api.getAlbumById = async (id) => {
 
 api.deleteAlbum = async (id) => {
   const response = await api.delete(`albums/${id}/`)
+  return response.data
+}
+
+api.createAlbum = async (name, qrPosition, interviews) => {
+  const response = await api.post(`albums/`, {
+    name,
+    qr_position: qrPosition,
+    interview_ids: interviews
+  });
   return response.data
 }
 

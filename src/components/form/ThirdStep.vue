@@ -3,23 +3,34 @@
     <template #title>3° Finaliza</template>
     <template #subtitle>tu álbum.</template>
     <div class="information">
-      <CInput
-        v-model.number="albumName"
-      >
+      <CInput>
         <template #label>¡Ponle un nombre!</template>
         <input
           class="information__name"
           type="text"
           placeholder="Mi álbum de entrevistas"
+          required
           v-model="albumName"
+          @keydown="emptyNameError = false"
         >
       </CInput>
+      <div v-if="emptyNameError" class="information__error">
+        Por favor, ingrese un nombre.
+      </div>
       <CSelect
+        class="information__select"
         :label="'¿Dónde quieres posicionar los códigos QR?'"
         :options="qrPositionOptions"
-        v-model.number="qrPosition"
+        v-model="qrPosition"
       ></CSelect>
-      <img/>FOTO QR
+      <div class="information__image">
+        <img
+          class="information__qr"
+          src="@/assets/images/dummy-qr.png"
+          :variant="qrPosition"
+        />
+        <img class="information__placeholder" src="@/assets/images/image-placeholder.png"/>
+      </div>
     </div>
   </Layout>
 </template>
@@ -41,22 +52,23 @@ export default {
     return {
       qrPositionOptions: [
         {
-          value: 0,
+          value: 'TOP_LEFT',
           label: 'Arriba a la izquierda'
         },
         {
-          value: 1,
+          value: 'TOP_RIGHT',
           label: 'Arriba a la derecha'
         },
         {
-          value: 2,
+          value: 'BOTTOM_RIGHT',
           label: 'Abajo a la derecha'
         },
         {
-          value: 3,
+          value: 'BOTTOM_LEFT',
           label: 'Abajo a la izquierda'
         }
-      ]
+      ],
+      emptyNameError: false
     }
   },
   computed: {
@@ -82,6 +94,7 @@ export default {
     ...mapMutations(['setAlbumName', 'setQrPosition']),
     validate() {
       if (!this.albumName) {
+        this.emptyNameError = true;
         return false;
       }
       return true;
@@ -91,9 +104,6 @@ export default {
 </script>
 
 <style>
-.information > *:not(:last-child) {
-  margin-bottom: 3rem;
-}
 
 .information__name {
   border: none;
@@ -104,6 +114,51 @@ export default {
 }
 
 .information__image {
-  width: min(400px, 80%);
+  position: relative;
+  margin: auto;
+  width: 80%;
+}
+
+.information__placeholder {
+  width: 100%;
+  display: block;
+}
+
+.information__error {
+  color: var(--bg-button-red);
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.information__select,
+.information__image {
+  margin-top: 2rem;
+}
+
+.information__qr {
+  position: absolute;
+  width: 15%;
+  border: 2px solid var(--bg-button-red);
+}
+
+.information__qr[variant*="TOP_LEFT"] {
+  top: 0;
+  left: 0;
+}
+
+.information__qr[variant*="TOP_RIGHT"] {
+  top: 0;
+  right: 0;
+}
+
+.information__qr[variant*="BOTTOM_RIGHT"] {
+  bottom: 0;
+  right: 0;
+}
+
+.information__qr[variant*="BOTTOM_LEFT"] {
+  bottom: 0;
+  left: 0;
 }
 </style>

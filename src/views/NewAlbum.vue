@@ -1,18 +1,32 @@
 <template>
   <div class="new">
-    <component :is="steps[currentStep]" ref="currentStep"></component>
-    <div class="new__footer">
-      <div class="footer__button">
-        <CButton v-if="currentStep > 0 && currentStep < 3" @click="currentStep--">
-          Atras
-        </CButton>
+    <form @submit.prevent="createAlbum">
+      <component :is="steps[currentStep]" ref="currentStep"></component>
+      <div v-if="currentStep < 3" class="new__footer">
+        <div class="footer__button">
+          <CButton v-if="currentStep > 0" @click="currentStep--" type="button">
+            <template #left-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>
+            </template>
+            Atras
+          </CButton>
+        </div>
+        <div class="footer__button">
+          <CButton v-if="currentStep < 2" @click="goToNextStep" type="button">
+            Siguiente
+            <template #right-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24"><path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/></svg>
+            </template>
+          </CButton>
+          <CButton v-else-if="currentStep === 2" type="submit">
+            <template #left-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+            </template>
+            Crear álbum
+          </CButton>
+        </div>
       </div>
-      <div class="footer__button">
-        <CButton v-if="currentStep != 3" @click="goToNextStep">
-          Siguiente
-        </CButton>
-      </div>
-    </div>
+    </form>
   </div>
 </template>
 
@@ -46,13 +60,17 @@ export default {
   },
   methods: {
     goToNextStep() {
-      if (this.currentStep === 2) {
-        // submittear
-      }
       if (this.$refs.currentStep.validate()) {
         this.currentStep++;
       }
     },
+    createAlbum() {
+      if (this.$refs.currentStep.validate()) {
+        this.createAlbumAction();
+        this.currentStep++;
+      }
+    },
+    ...mapActions({ createAlbumAction: 'createAlbum' }),
     ...mapActions(['getInterviews'])
   }
 }

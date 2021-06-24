@@ -6,7 +6,7 @@ function getDefaultData() {
     interviews: [],
     selectedInterviews: [],
     albumName: '',
-    qrPosition: 0,
+    qrPosition: 'TOP_LEFT',
     albumId: 1
   };
 }
@@ -34,6 +34,9 @@ const album = {
     resetData(state) {
       Object.assign(state, getDefaultData());
     },
+    setAlbumId(state, albumId) {
+      state.albumId = albumId;
+    },
     setAlbumName(state, albumName) {
       state.albumName = albumName;
     },
@@ -50,7 +53,6 @@ const album = {
       } else {
         state.selectedInterviews.splice(interviewIndex, 1);
       }
-      console.log(state.selectedInterviews);
     },
     moveInterviewUp(state, index) {
       const selectedInterviews = [...state.selectedInterviews];
@@ -71,10 +73,14 @@ const album = {
     async getInterviews({ commit, state }) {
       const { interviews } = state;
       if (!interviews.length) {
-        const interviews = await api.getInterviews();
-        commit('setInterviews', interviews)
+        const interviews = await api.getInterviews( );
+        commit('setInterviews', interviews);
       }
     },
+    async createAlbum({ commit, state }) {
+      const createdAlbumData = await api.createAlbum(state.albumName, state.qrPosition, state.selectedInterviews);
+      commit('setAlbumId', createdAlbumData.id);
+    }
   }
 }
 
