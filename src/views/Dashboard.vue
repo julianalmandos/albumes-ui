@@ -2,7 +2,7 @@
   <Layout>
     <template #title>¡Bienvenido, Andrés!</template>
     <template #subtitle>Desde aquí podrás crear y gestionar tus álbumes.</template>
-    <div class="dashboard__buttons">
+    <ul class="dashboard__buttons">
       <router-link class="dashboard__button" to="/new">
         <New/>
         <span>Crear nuevo álbum</span>
@@ -11,7 +11,7 @@
         <List/>
         <span>Ver mis álbumes</span>
       </router-link>
-    </div>
+    </ul>
   </Layout>
 </template>
 

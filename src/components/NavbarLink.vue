@@ -25,7 +25,7 @@ export default {
 
   font-weight: bold;
   text-decoration: none;
-  color: inherit;
+  color: #033e4f;
 }
 
 .anchor:hover {

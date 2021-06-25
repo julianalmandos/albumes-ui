@@ -1,14 +1,26 @@
 <template>
   <div class="section">
-    <h2 class="section__title"><slot name="title"></slot></h2>
-    <h3 class="section__subtitle"><slot name="subtitle"></slot></h3>
+    <h2 class="section__title" v-if="hasTitleSlot">
+      <slot name="title"></slot>
+    </h2>
+    <h3 class="section__subtitle" v-if="hasSubtitleSlot">
+      <slot name="subtitle"></slot>
+    </h3>
     <slot class="section__content"></slot>
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'Layout',
+  computed: {
+    hasTitleSlot() {
+      return !!this.$slots['title']
+    },
+    hasSubtitleSlot() {
+      return !!this.$slots['subtitle']      
+    }
+  }
 }
 </script>
 
@@ -20,6 +32,7 @@ export default {
   justify-content: center;
   text-align: center;
   padding-top: 5rem;
+  padding: 2em;
 }
 
 .section__title {
