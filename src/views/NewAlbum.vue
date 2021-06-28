@@ -11,6 +11,9 @@
             Atras
           </CButton>
         </div>
+        <div class="footer__text">
+          <p>{{ getSelectedInterviews.length }} entrevistas seleccionadas</p>
+        </div>
         <div class="footer__button">
           <CButton v-if="currentStep < 2" @click="goToNextStep" type="button">
             Siguiente
@@ -37,7 +40,7 @@ import ThirdStep from '@/components/form/ThirdStep.vue'
 import FourthStep from '@/components/form/FourthStep.vue'
 
 import CButton from '@/components/CButton.vue';
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'NewAlbum',
@@ -72,6 +75,9 @@ export default {
     },
     ...mapActions({ createAlbumAction: 'createAlbum' }),
     ...mapActions(['getInterviews'])
+  },
+  computed: {
+    ...mapGetters(['getSelectedInterviews'])
   }
 }
 </script>
@@ -85,7 +91,10 @@ export default {
   position: fixed;
   width: 100%;
   bottom: 0;
+  gap: 1em;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
   padding: 1rem 4rem;
   background-color: var(--bg-primary);
@@ -93,4 +102,13 @@ export default {
   -moz-box-shadow: 0px -1px 8px -3px rgba(0,0,0,0.5);
   box-shadow: 0px -1px 8px -3px rgba(0,0,0,0.5);
 }
+
+.new__footer > * {
+  display: flex;
+  white-space: nowrap;
+  flex: 1 1;
+  justify-content: center;
+}
+
+
 </style>
