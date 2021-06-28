@@ -1,7 +1,3 @@
-export const getFontSizeDefaultOption = () => {
-  return 'MEDIUM';
-}
-
 export const getFontSizeOptions = () => {
   return [
     { label: 'Pequeño', value: 'SMALL' },
@@ -10,19 +6,11 @@ export const getFontSizeOptions = () => {
   ];
 }
 
-export const getColorModeDefaultOption = () => {
-  return 'ORIGINAL';
-}
-
 export const getColorModeOptions = () => {
   return [
     { label: 'Modo original', value: 'ORIGINAL' },
     { label: 'Modo daltónico', value: 'COLOR_BLIND' }
   ];
-}
-
-export const getElementsPerPageDefaultOption = () => {
-  return '8';
 }
 
 export const getElementsPerPageOptions = () => {

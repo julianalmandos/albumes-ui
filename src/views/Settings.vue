@@ -2,21 +2,21 @@
   <Layout>
     <template #title>Configuración</template>
     <template #subtitle>Configure aspectos generales de la plataforma como el modo de color, el tamaño de la letra o el número de elementos por página.</template>
-    <form class="settings" @submit.prevent="saveSettings">
+    <form class="settings" @submit.prevent="updateSettings">
       <CSelect
         :label="'Colores'"
         :options="colorsOptions"
-        v-model="colorsValue"
+        v-model="color_mode"
       ></CSelect>
       <CSelect
         :label="'Tamaño de letra'"
         :options="fontSizeOptions"
-        v-model="fontSizeValue"
+        v-model="font_size"
       ></CSelect>
       <CSelect
         :label="'Números de elementos por página'"
         :options="elementsPerPageOptions"
-        v-model="elementsPerPageValue"
+        v-model="elements_per_page"
       ></CSelect>
       <div class="settings__buttons">
         <router-link class="buttons__cancel" to="/dashboard">
@@ -36,6 +36,9 @@ import Layout from '@/components/Layout.vue';
 import api from '@/services/index.js';
 import * as Settings from '@/utils/SettingsUtils.js';
 
+import { mapFields } from 'vuex-map-fields';
+import { mapActions } from 'vuex';
+
 export default {
   name: 'Settings',
   components: {
@@ -45,24 +48,26 @@ export default {
   },
   data() {
     return {
-      colorsValue: Settings.getColorModeDefaultOption(),
-      fontSizeValue: Settings.getFontSizeDefaultOption(),
-      elementsPerPageValue: Settings.getElementsPerPageDefaultOption(),
       colorsOptions: Settings.getColorModeOptions(),
       fontSizeOptions: Settings.getFontSizeOptions(),
       elementsPerPageOptions: Settings.getElementsPerPageOptions()
     }
   },
   async mounted() {
-    const settings = await api.getSettings();
-    this.colorsValue = settings.color_mode;
-    this.fontSizeValue = settings.font_size;
-    this.elementsPerPageValue = settings.elements_per_page;
+    this.getSettings();
+  },
+  computed: {
+    ...mapFields([
+      'settings.color_mode',
+      'settings.font_size',
+      'settings.elements_per_page',
+    ]),
   },
   methods: {
-    saveSettings() {
-      // TODO: save configuration
-    }
+    getSettings() {      
+      this.$store.dispatch('getSettingsById', 1) //FIXME: this should depend on the user ID in the future.
+    },
+    ...mapActions(['updateSettings'])
   }
 }
 </script>

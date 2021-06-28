@@ -15,8 +15,14 @@ api.getInterviews = async () => {
   return response.data
 }
 
-api.getSettings = async () => {
-  const response = await api.get('settings/1/') //FIXME: this should depend on the user ID in the future.
+api.getSettingsById = async (id) => {
+  const response = await api.get(`settings/${id}/`)
+  return response.data
+}
+
+api.updateSettings = async (newSettings) => {
+  const { id } = newSettings
+  const response = await api.put(`settings/${id}/`, newSettings)
   return response.data
 }
 
