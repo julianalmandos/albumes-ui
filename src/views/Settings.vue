@@ -2,7 +2,7 @@
   <Layout>
     <template #title>Configuración</template>
     <template #subtitle>Configure aspectos generales de la plataforma como el modo de color, el tamaño de la letra o el número de elementos por página.</template>
-    <form class="settings" @submit.prevent="updateSettings">
+    <form class="settings" @submit.prevent="updateUser">
       <CSelect
         :label="'Colores'"
         :options="colorsOptions"
@@ -37,7 +37,7 @@ import api from '@/services/index.js';
 import * as Settings from '@/utils/SettingsUtils.js';
 
 import { mapFields } from 'vuex-map-fields';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'Settings',
@@ -53,21 +53,18 @@ export default {
       elementsPerPageOptions: Settings.getElementsPerPageOptions()
     }
   },
-  async mounted() {
-    this.getSettings();
-  },
   computed: {
     ...mapFields([
-      'settings.color_mode',
-      'settings.font_size',
-      'settings.elements_per_page',
-    ]),
+      'user.settings.color_mode',
+      'user.settings.font_size',
+      'user.settings.elements_per_page',
+    ])
   },
   methods: {
-    getSettings() {      
-      this.$store.dispatch('getSettingsById', 1) //FIXME: this should depend on the user ID in the future.
-    },
-    ...mapActions(['updateSettings'])
+    ...mapActions(['getUser', 'updateUser'])
+  },
+  mounted() {
+    this.getUser()
   }
 }
 </script>

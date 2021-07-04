@@ -57,4 +57,22 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  const { isUserLoggedIn } = store.getters;
+
+  // TODO - Refactor: Implement with meta attribute 
+  // without hardcoding the root ("/") path
+  if (to.path === "/" && isUserLoggedIn) {
+    next({ name: "Dashboard" });
+    return
+  } 
+
+  if (to.path !== "/" && !isUserLoggedIn) {
+    next({ name: "Home" });
+    return
+  }
+
+  next()
+})
+
 export default router

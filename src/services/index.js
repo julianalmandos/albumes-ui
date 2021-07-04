@@ -5,24 +5,13 @@ const api = axios.create({
   baseURL: 'https://albumes-api.herokuapp.com/',
 })
 
-api.getAlbums = async () => {
-  const response = await api.get('albums/')
-  return response.data
-}
-
 api.getInterviews = async () => {
   const response = await api.get('interviews/')
   return response.data
 }
 
-api.getSettingsById = async (id) => {
-  const response = await api.get(`settings/${id}/`)
-  return response.data
-}
-
-api.updateSettings = async (newSettings) => {
-  const { id } = newSettings
-  const response = await api.put(`settings/${id}/`, newSettings)
+api.getAlbums = async () => {
+  const response = await api.get('albums/')
   return response.data
 }
 
@@ -45,7 +34,33 @@ api.createAlbum = async (name, qrPosition, interviews) => {
   return response.data
 }
 
+api.loginWithGoogle = async (code) => {
+  const response = await api.post('auth/login/', { 
+    code, 
+    provider: 'google-oauth2',
+    redirect_uri: window.origin
+  });
+  return response.data
+}
+
+api.getUser = async (id) => {
+  const response = await api.get(`users/${id}/`)
+  return response.data
+}
+
+api.updateUser = async (userModified) => {
+  const { id } = userModified
+  const response = await api.put(`users/${id}/`, userModified)
+  return response.data
+}
+
 api.interceptors.request.use(config => {
+    const { getToken:token } = store.getters
+
+    if (token) {
+      config.headers.Authorization = `Token ${token}`
+    }
+
     store.commit('loading')
     return config
   }, () => {

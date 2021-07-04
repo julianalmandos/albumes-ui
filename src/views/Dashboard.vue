@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <template #title>¡Bienvenido, Andrés!</template>
+    <template #title>¡Bienvenido, {{ first_name }}!</template>
     <template #subtitle>Desde aquí podrás crear y gestionar tus álbumes.</template>
     <ul class="dashboard__buttons">
       <router-link class="dashboard__button" to="/new">
@@ -20,12 +20,31 @@ import Layout from '@/components/Layout.vue';
 import List from '@/components/icons/List.vue';
 import New from '@/components/icons/New.vue';
 
+import { mapActions } from 'vuex';
+import { mapFields } from 'vuex-map-fields';
+
+
 export default {
   name: 'Dashboard',
+  
   components: {
     Layout,
     List,
     New
+  },
+
+  computed: {
+    ...mapFields([
+      'user.first_name'
+    ])
+  },
+
+  methods: {
+    ...mapActions(['getUser'])
+  },
+
+  mounted() {
+    this.getUser()
   }
 }
 </script>
