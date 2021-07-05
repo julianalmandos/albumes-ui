@@ -34,6 +34,13 @@ api.createAlbum = async (name, qrPosition, interviews) => {
   return response.data
 }
 
+api.downloadAlbum = async (id) => {
+  const response = await api.get(`albums/${id}/download/`, {
+    responseType: 'blob'
+  });
+  return response.data
+}
+
 api.loginWithGoogle = async (code) => {
   const response = await api.post('auth/login/', { 
     code, 

@@ -22,14 +22,12 @@
             </template>
             Editar
           </CButton>
-          <a :href="downloadLink" download> 
-            <CButton>
-              <template #left-icon>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16 11h5l-9 10-9-10h5v-11h8v11zm1 11h-10v2h10v-2z"/></svg>
-              </template>
-              Descargar
-            </CButton>
-          </a>
+          <CButton @click="downloadAlbum(album.id)">
+            <template #left-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16 11h5l-9 10-9-10h5v-11h8v11zm1 11h-10v2h10v-2z"/></svg>
+            </template>
+            Descargar
+          </CButton>
         </div>
         <div class="album__delete">
           <CButton @click="$emit('deleteAlbum', album.id)" variant="red">
@@ -48,26 +46,27 @@ import CButton from '@/components/CButton.vue';
 import GalleryThumbnail from '@/components/GalleryThumbnail.vue';
 
 import api from '@/services/index'
+import download from 'js-file-download'
+import { toUnderScore } from '@/utils/formatters'
 
 export default {
   name: 'Album',
+
   components: {
     CButton,
     GalleryThumbnail
   },
+
   props: {
     album: { type: Object, required: true }
   },
+
   computed: {
     parsedDate() {
       return this.album.created.split('T')[0].split('-').reverse().join('/');
     },
     youtubeVideo() {
       return this.album.interviews[0].youtube_video.code;
-    },
-    downloadLink() {
-      const baseURL = api.defaults.baseURL
-      return baseURL + `albums/${this.album.id}/download/`
     },
     thumbnails() {
       const { interviews } = this.album
@@ -80,12 +79,24 @@ export default {
           alt: `Entrevista '${interview.name}' del album '${this.album.name}'`
         }
       });
+    },
+    albumFilename() {
+      const { name } = this.album;
+      return toUnderScore(name.toLowerCase());
     }
   },
+
   methods: {
     goToAlbum(id) {
       this.$router.push({ name: 'AlbumDetail', params: { id } })
     },
+    async downloadAlbum() {
+      const { id, name } = this.album;
+      const filename = `${this.albumFilename}.zip`
+
+      const file = await api.downloadAlbum(id);
+      download(file, filename);
+    }
   }
 }
 </script>
