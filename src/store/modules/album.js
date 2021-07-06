@@ -7,12 +7,14 @@ function getDefaultData() {
     selectedInterviews: [],
     albumName: '',
     qrPosition: 'TOP_LEFT',
-    albumId: 1
+    albumId: 1,
+    isAlbumNotified: false
   };
 }
 
 const album = {
   state: getDefaultData(),
+
   getters: {
     getAlbumId(state) {
       return state.albumId;
@@ -28,11 +30,18 @@ const album = {
     },
     getSelectedInterviews(state) {
       return state.selectedInterviews;
+    },
+    isAlbumNotified(state) {
+      return state.isAlbumNotified;
     }
   },
+
   mutations: {
     resetData(state) {
       Object.assign(state, getDefaultData());
+    },
+    albumNotified(state) {
+      state.isAlbumNotified = true;
     },
     setAlbumId(state, albumId) {
       state.albumId = albumId;
@@ -69,6 +78,7 @@ const album = {
       Vue.set(state, 'selectedInterviews', selectedInterviews);
     }
   },
+
   actions: {
     async getInterviews({ commit, state }) {
       const { interviews } = state;

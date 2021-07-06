@@ -1,5 +1,5 @@
 <template>
-  <div class="album">
+  <div :class="['album', { 'album__selected': isNotNotified }]" @click="albumNotified">
     <GalleryThumbnail 
       :thumbnails="thumbnails" 
     />
@@ -48,6 +48,7 @@ import GalleryThumbnail from '@/components/GalleryThumbnail.vue';
 import api from '@/services/index'
 import download from 'js-file-download'
 import { toUnderScore } from '@/utils/formatters'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Album',
@@ -83,7 +84,11 @@ export default {
     albumFilename() {
       const { name } = this.album;
       return toUnderScore(name.toLowerCase());
-    }
+    },
+    isNotNotified() {
+      return this.album.id === this.getAlbumId && !this.isAlbumNotified;
+    },
+    ...mapGetters(['getAlbumId', 'isAlbumNotified'])
   },
 
   methods: {
@@ -96,7 +101,8 @@ export default {
 
       const file = await api.downloadAlbum(id);
       download(file, filename);
-    }
+    },
+    ...mapMutations(['albumNotified'])
   }
 }
 </script>
@@ -109,6 +115,10 @@ export default {
   gap: 2rem;
   border-radius: 15px;
   margin: 1rem;
+}
+
+.album__selected {
+  border: 3px solid var(--bg-navbar);
 }
 
 .album__information {

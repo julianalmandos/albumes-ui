@@ -1,7 +1,9 @@
 <template>
   <header :class="['navbar', { 'navbar--centered': isHome }]">
     <h1 class="navbar__logo">
-      Álbumes
+      <router-link :to="'/'">
+        Álbumes
+      </router-link>
     </h1>
     <nav v-if="!isHome" class="navbar__menu">
       <NavbarLink :to="'/new'">

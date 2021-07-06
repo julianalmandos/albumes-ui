@@ -19,10 +19,10 @@
       <div class="modal__dialog">
         <p>{{modalMessage}}</p>
         <div class="modal__buttons">
-          <CButton @click="deleteAlbum" variant="white large">
+          <CButton @click="deleteAlbum" variant="red large">
             Si
           </CButton>
-          <CButton @click="hideModal" variant="red large">
+          <CButton @click="hideModal" variant="white large">
             No
           </CButton>
         </div>

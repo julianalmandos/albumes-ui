@@ -37,7 +37,6 @@
 import FirstStep from '@/components/form/FirstStep.vue'
 import SecondStep from '@/components/form/SecondStep.vue'
 import ThirdStep from '@/components/form/ThirdStep.vue'
-import FourthStep from '@/components/form/FourthStep.vue'
 
 import CButton from '@/components/CButton.vue';
 import { mapActions, mapGetters } from 'vuex'
@@ -53,7 +52,6 @@ export default {
         FirstStep,
         SecondStep,
         ThirdStep,
-        FourthStep
       ],
       currentStep: 0
     }
@@ -67,14 +65,14 @@ export default {
         this.currentStep++;
       }
     },
-    createAlbum() {
+    async createAlbum() {
       if (this.$refs.currentStep.validate()) {
-        this.createAlbumAction();
-        this.currentStep++;
+        await this.postAlbum();
+        this.$router.push({ name: "Albums" });
       }
     },
-    ...mapActions({ createAlbumAction: 'createAlbum' }),
-    ...mapActions(['getInterviews'])
+    ...mapActions({ postAlbum: 'createAlbum' }),
+    ...mapActions(['getInterviews', 'setAlbumSelected'])
   },
   computed: {
     ...mapGetters(['getSelectedInterviews'])
