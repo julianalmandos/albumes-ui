@@ -36,7 +36,6 @@ export default {
 
 .thumbnail {
   display: flex;
-  flex:  1;
   justify-content: center;
   width: 300px;
   height: 150px;

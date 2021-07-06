@@ -115,6 +115,7 @@ export default {
   gap: 2rem;
   border-radius: 15px;
   margin: 1rem;
+  justify-content: center;
 }
 
 .album__selected {

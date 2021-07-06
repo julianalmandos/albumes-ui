@@ -46,4 +46,11 @@ export default {
   color: var(--text-secondary);
   font-size: clamp(1.25rem, 3vw, 1.75rem);
 }
+
+@media (max-width: 720px) {
+  .section {
+   padding-left: 0;
+   padding-right: 0;
+  }
+}
 </style>
