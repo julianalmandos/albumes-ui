@@ -8,16 +8,6 @@
         :options="colorsOptions"
         v-model="color_mode"
       ></CSelect>
-      <CSelect
-        :label="'Tamaño de letra'"
-        :options="fontSizeOptions"
-        v-model="font_size"
-      ></CSelect>
-      <CSelect
-        :label="'Números de elementos por página'"
-        :options="elementsPerPageOptions"
-        v-model="elements_per_page"
-      ></CSelect>
       <div class="settings__buttons">
         <router-link class="buttons__cancel" to="/dashboard">
           <CButton variant="red large" type="button">Cancelar</CButton>
@@ -48,16 +38,12 @@ export default {
   },
   data() {
     return {
-      colorsOptions: Settings.getColorModeOptions(),
-      fontSizeOptions: Settings.getFontSizeOptions(),
-      elementsPerPageOptions: Settings.getElementsPerPageOptions()
+      colorsOptions: Settings.getColorModeOptions()
     }
   },
   computed: {
     ...mapFields([
       'user.settings.color_mode',
-      'user.settings.font_size',
-      'user.settings.elements_per_page',
     ])
   },
   methods: {
