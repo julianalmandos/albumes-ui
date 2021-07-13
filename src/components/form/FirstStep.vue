@@ -45,8 +45,13 @@ export default {
   },
   methods: {
     ...mapMutations({ 'toggleSelectionMutation': 'toggleSelection' }),
+    ...mapMutations(['addAlert']),
     validate() {
       if (!this.getSelectedInterviews.length) {
+        this.addAlert({
+          msg: 'Por favor, seleccione al menos una entrevista.',
+          variant: 'error'
+        });
         return false;
       }
       return true;

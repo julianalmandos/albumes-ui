@@ -2,7 +2,7 @@
   <Layout>
     <template #title>Configuración</template>
     <template #subtitle>Configure aspectos generales de la plataforma como el modo de color, el tamaño de la letra o el número de elementos por página.</template>
-    <form class="settings" @submit.prevent="updateUser">
+    <form class="settings" @submit.prevent="saveSettings">
       <CSelect
         :label="'Colores'"
         :options="colorsOptions"
@@ -22,12 +22,10 @@
 import CButton from '@/components/CButton.vue';
 import CSelect from '@/components/CSelect.vue';
 import Layout from '@/components/Layout.vue';
-
-import api from '@/services/index.js';
 import * as Settings from '@/utils/SettingsUtils.js';
 
 import { mapFields } from 'vuex-map-fields';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'Settings',
@@ -47,7 +45,14 @@ export default {
     ])
   },
   methods: {
-    ...mapActions(['getUser', 'updateUser'])
+    ...mapActions(['getUser', 'updateUser']),
+    ...mapMutations(['addAlert']),
+    saveSettings() {
+      this.updateUser();
+      this.addAlert({
+        msg: 'Configuración editada exitosamente!'
+      });
+    }
   },
   mounted() {
     this.getUser()

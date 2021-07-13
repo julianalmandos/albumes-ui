@@ -37,7 +37,7 @@ import CButton from '@/components/CButton.vue'
 import Layout from '@/components/Layout.vue'
 import Loader from '@/components/share/Loader.vue'
 
-import { mapActions, mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'Albums',
@@ -69,7 +69,6 @@ export default {
     showDeleteAlbumModal(albumId) {
       this.modalMessage = `¿Está seguro que desea eliminar el álbum "${this.getAlbumName(albumId)}"?`;
       this.showModal = true;
-
       this.albumToRemove = albumId;
     },
     hideModal() {
@@ -79,12 +78,16 @@ export default {
     deleteAlbum() {
       this.hideModal();
       this.$store.dispatch('deleteAlbum', this.albumToRemove);
+      this.addAlert({
+        msg: 'Album eliminado correctamente!',
+        variant: 'error'
+      });
     },
     getAlbums() {
       this.$store.dispatch('getAlbums');
-    }
+    },
+    ...mapMutations(['addAlert'])
   },
-
   created() {
     this.getAlbums();
   }

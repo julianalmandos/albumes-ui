@@ -5,11 +5,13 @@
     <Loader v-show="isLoading" />
     <EmptyResults v-show="isEmpty" />
     <Error v-show="isError" />
+    <AlertContainer/>
     <router-view v-show="isSuccess" />
   </div>
 </template>
 
 <script>
+import AlertContainer from '@/components/AlertContainer.vue';
 import Navbar from '@/components/Navbar.vue';
 import NavbarCollapsed from '@/components/NavbarCollapsed.vue';
 import Loader from '@/components/share/Loader.vue'
@@ -21,6 +23,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'App',
   components: {
+    AlertContainer,
     Navbar,
     NavbarCollapsed,
     Loader,

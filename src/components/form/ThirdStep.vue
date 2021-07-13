@@ -11,12 +11,8 @@
           placeholder="Mi álbum de entrevistas"
           required
           v-model="albumName"
-          @keydown="emptyNameError = false"
         >
       </CInput>
-      <div v-if="emptyNameError" class="information__error">
-        Por favor, ingrese un nombre.
-      </div>
       <CSelect
         class="information__select"
         :label="'¿Dónde quieres posicionar los códigos QR?'"
@@ -91,10 +87,13 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setAlbumName', 'setQrPosition']),
+    ...mapMutations(['setAlbumName', 'setQrPosition', 'addAlert']),
     validate() {
       if (!this.albumName) {
-        this.emptyNameError = true;
+        this.addAlert({
+          msg: 'Por favor, ingrese un nombre para el álbum.',
+          variant: 'error'
+        });
         return false;
       }
       return true;
@@ -122,13 +121,6 @@ export default {
 .information__placeholder {
   width: 100%;
   display: block;
-}
-
-.information__error {
-  color: var(--bg-button-red);
-  font-size: clamp(0.75rem, 1.5vw, 1rem);
-  font-weight: bold;
-  margin-top: 1rem;
 }
 
 .information__select,

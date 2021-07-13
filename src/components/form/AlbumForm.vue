@@ -47,7 +47,7 @@ import SecondStep from '@/components/form/SecondStep.vue'
 import ThirdStep from '@/components/form/ThirdStep.vue'
 
 import CButton from '@/components/CButton.vue';
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'NewAlbum',
@@ -84,17 +84,24 @@ export default {
 
         if (this.type === 'create') {
           await this.createAlbum();
+          this.addAlert({
+            msg: 'Album creado exitosamente!'
+          });
         } else {
           await this.editAlbum();
+          this.addAlert({
+            msg: 'Album editado exitosamente!'
+          });
         };
 
         this.$router.push({ name: "Albums" });
       }
     },
     ...mapActions([
-        'getInterviews', 'setAlbumSelected',
-        'createAlbum', 'editAlbum'
-      ]),
+      'getInterviews', 'setAlbumSelected',
+      'createAlbum', 'editAlbum'
+    ]),
+    ...mapMutations(['addAlert'])
   },
   computed: {
     ...mapGetters(['getSelectedInterviews'])
