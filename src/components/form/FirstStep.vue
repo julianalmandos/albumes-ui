@@ -93,6 +93,10 @@ export default {
   fill: var(--text-primary);
 }
 
+.interview__button:hover {
+  background-color: var(--bg-button-blue-hover);
+}
+
 .interview__button > svg {
   margin-right: 0.5rem;
 }
@@ -101,6 +105,10 @@ export default {
   background-color: var(--bg-button-red);
   color: white;
   fill: white;
+}
+
+.interview__button--selected:hover {
+  background-color: var(--bg-button-red-hover);
 }
 
 @media (max-width: 720px) {
