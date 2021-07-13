@@ -1,7 +1,6 @@
 <template>
   <AlbumForm
     @submit="createAlbum"
-    finishStepTextLabel="Crear álbum"
   />
 </template>
 

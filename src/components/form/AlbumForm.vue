@@ -27,9 +27,13 @@
           </CButton>
           <CButton v-else-if="currentStep === 2" type="submit" @click="submitAlbum">
             <template #left-icon>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+              <slot name="submitIcon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+              </slot>
             </template>
-            {{ finishStepTextLabel }}
+            <slot name="submitText">
+              Crear álbum
+            </slot>
           </CButton>
         </div>
       </div>
