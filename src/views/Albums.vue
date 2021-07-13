@@ -12,7 +12,6 @@
           @deleteAlbum="showDeleteAlbumModal"
         />
       </li>
-
     </ul>
 
     <div v-if="showModal" class="modal">

@@ -10,12 +10,14 @@
       </div>
       <div class="album__actions">
         <div class="album__edition">
-          <CButton @click="goToAlbum(album.id)">
-            <template #left-icon>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 7.449-11.985 7.449c-7.18 0-12.015-7.449-12.015-7.449s4.446-6.551 12.015-6.551c7.694 0 11.985 6.551 11.985 6.551zm-7 .449c0-2.761-2.238-5-5-5-2.761 0-5 2.239-5 5 0 2.762 2.239 5 5 5 2.762 0 5-2.238 5-5z"/></svg>
-            </template>
-            Visualizar
-          </CButton>
+          <router-link :to="{ path: `albums/${album.id}`}">
+            <CButton>
+              <template #left-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 7.449-11.985 7.449c-7.18 0-12.015-7.449-12.015-7.449s4.446-6.551 12.015-6.551c7.694 0 11.985 6.551 11.985 6.551zm-7 .449c0-2.761-2.238-5-5-5-2.761 0-5 2.239-5 5 0 2.762 2.239 5 5 5 2.762 0 5-2.238 5-5z"/></svg>
+              </template>
+              Visualizar
+            </CButton>
+          </router-link>
           <router-link :to="{ path: `albums/edit/${album.id}`}">
             <CButton>
               <template #left-icon>
@@ -94,9 +96,6 @@ export default {
   },
 
   methods: {
-    goToAlbum(id) {
-      this.$router.push({ name: 'AlbumDetail', params: { id } })
-    },
     async downloadAlbum() {
       const { id } = this.album;
       const filename = `${this.albumFilename}.zip`
