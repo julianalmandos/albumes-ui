@@ -34,6 +34,15 @@ api.createAlbum = async (name, qrPosition, interviews) => {
   return response.data
 }
 
+api.editAlbum = async (id, name, qrPosition, interviews) => {
+  const response = await api.put(`albums/${id}/`, {
+    name,
+    qr_position: qrPosition,
+    interview_ids: interviews
+  });
+  return response.data
+}
+
 api.downloadAlbum = async (id) => {
   const response = await api.get(`albums/${id}/download/`, {
     responseType: 'blob'

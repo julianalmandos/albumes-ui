@@ -4,6 +4,7 @@ import Dashboard from '../views/Dashboard.vue'
 import Home from '../views/Home.vue'
 import NewAlbum from '../views/NewAlbum.vue'
 import AlbumDetail from '../views/AlbumDetail.vue'
+import AlbumEdit from '../views/AlbumEdit.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store/index';
@@ -30,6 +31,11 @@ const routes = [
     path: '/albums/:id',
     name: 'AlbumDetail',
     component: AlbumDetail
+  },
+  {
+    path: '/albums/edit/:id',
+    name: 'AlbumEdit',
+    component: AlbumEdit
   },
   {
     path: '/new',

@@ -37,6 +37,12 @@ const album = {
   },
 
   mutations: {
+    setAlbumToForm(state, album) {
+      state.selectedInterviews = album.interviews.map((interview) => interview.id);
+      state.albumName = album.name;
+      state.qrPosition = album.qr_position;
+      state.albumId = album.id;      
+    },
     resetData(state) {
       Object.assign(state, getDefaultData());
     },
@@ -90,6 +96,16 @@ const album = {
     async createAlbum({ commit, state }) {
       const createdAlbumData = await api.createAlbum(state.albumName, state.qrPosition, state.selectedInterviews);
       commit('setAlbumId', createdAlbumData.id);
+    },
+    async editAlbum({ commit, state }) {
+      const editedAlbum = await api.editAlbum(
+        state.albumId,
+        state.albumName, 
+        state.qrPosition, 
+        state.selectedInterviews
+      );
+
+      commit('setAlbumToForm', editedAlbum);
     }
   }
 }

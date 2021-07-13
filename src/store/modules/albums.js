@@ -5,6 +5,11 @@ const albumsStore = {
     albums: [],
     album: {}
   },
+  getters: {
+    getAlbum(state) {
+      return state.album;
+    }
+  },
   mutations: {
     setAlbums(state, albums) {
       state.albums = albums
@@ -14,7 +19,7 @@ const albumsStore = {
     },
     deleteAlbum(state, id) {
       state.albums = state.albums.filter(album => album.id !== id)
-    }
+    },
   },
   actions: {
     async getAlbums({ commit }) {
