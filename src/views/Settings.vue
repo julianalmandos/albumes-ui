@@ -49,6 +49,7 @@ export default {
     ...mapMutations(['addAlert']),
     saveSettings() {
       this.updateUser();
+      this.$router.go(-1);
       this.addAlert({
         msg: 'Configuración editada exitosamente!'
       });

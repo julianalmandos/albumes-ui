@@ -1,6 +1,6 @@
 export const getColorModeOptions = () => {
   return [
     { label: 'Modo original', value: 'ORIGINAL' },
-    { label: 'Modo daltónico', value: 'COLOR_BLIND' }
+    { label: 'Modo alto contraste', value: 'HIGH_CONTRAST' }
   ];
 }

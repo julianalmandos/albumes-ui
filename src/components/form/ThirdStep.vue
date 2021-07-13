@@ -7,9 +7,9 @@
         <template #label>¡Ponle un nombre!</template>
         <input
           class="information__name"
+          ref="name"
           type="text"
           placeholder="Mi álbum de entrevistas"
-          required
           v-model="albumName"
         >
       </CInput>
@@ -86,6 +86,9 @@ export default {
       }
     }
   },
+  mounted() {
+    this.$refs.name.focus();
+  },
   methods: {
     ...mapMutations(['setAlbumName', 'setQrPosition', 'addAlert']),
     validate() {
@@ -94,6 +97,7 @@ export default {
           msg: 'Por favor, ingrese un nombre para el álbum.',
           variant: 'error'
         });
+        this.$refs.name.focus();
         return false;
       }
       return true;
