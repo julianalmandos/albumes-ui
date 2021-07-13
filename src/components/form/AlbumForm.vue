@@ -53,13 +53,7 @@ export default {
   name: 'NewAlbum',
   components: {
     CButton
-  },
-  props: {
-    finishStepTextLabel: {
-      type: String,
-      required: true
-    }
-  },
+  }
   data() {
     return {
       steps: [
