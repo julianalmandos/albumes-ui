@@ -98,7 +98,7 @@ export default {
       this.$router.push({ name: 'AlbumDetail', params: { id } })
     },
     async downloadAlbum() {
-      const { id, name } = this.album;
+      const { id } = this.album;
       const filename = `${this.albumFilename}.zip`
 
       const file = await api.downloadAlbum(id);

@@ -1,6 +1,7 @@
 <template>
   <div class="app">
     <Navbar/>
+    <NavbarCollapsed class="navbar--collapsed"/>
     <Loader v-show="isLoading" />
     <EmptyResults v-show="isEmpty" />
     <Error v-show="isError" />
@@ -10,6 +11,7 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue';
+import NavbarCollapsed from '@/components/NavbarCollapsed.vue';
 import Loader from '@/components/share/Loader.vue'
 import Error from '@/components/share/Error.vue'
 import EmptyResults from '@/components/share/EmptyResults.vue'
@@ -20,6 +22,7 @@ export default {
   name: 'App',
   components: {
     Navbar,
+    NavbarCollapsed,
     Loader,
     EmptyResults,
     Error
@@ -39,5 +42,19 @@ export default {
 .app {
   background-color: var(--bg-primary);
   min-height: 100vh;
+}
+
+.navbar--collapsed {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .navbar--collapsed {
+    display: flex;
+  }
+
+  .navbar:not(.navbar--collapsed) {
+    display: none;
+  }
 }
 </style>

@@ -41,7 +41,7 @@ export default {
 
   border-radius: 7px;
   padding: 0.75em 0.75rem;
-  font-size: clamp(0.5rem, 3vw, 0.8rem);
+  font-size: clamp(0.7rem, 3vw, 0.8rem);
 }
 
 .button:hover {

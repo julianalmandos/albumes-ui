@@ -1,5 +1,4 @@
 import api from '@/services/index';
-import Vue from 'vue';
 import { getField, updateField } from 'vuex-map-fields';
 
 const session = {
@@ -35,11 +34,9 @@ const session = {
   mutations: {
     setToken(state, token) {
       state.token = token;
-      localStorage.token = token;
     },
     setUser(state, user) {
       state.user = user;
-      localStorage.userId = user.id;
     },
     updateField
   },
@@ -50,7 +47,16 @@ const session = {
       const {token, ...user} = session;
 
       commit('setToken', token);
+      localStorage.setItem('token', token);
       commit('setUser', user);
+      localStorage.setItem('userId', user.id);
+    },
+
+    async logout({ commit }) {
+      commit('setToken', null);
+      localStorage.removeItem('token');
+      commit('setUser', null);
+      localStorage.removeItem('userId');
     },
 
     async getUser({ commit, getters }) {

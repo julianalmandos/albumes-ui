@@ -35,9 +35,6 @@ import FirstStep from '@/components/icons/FirstStep.vue';
 import SecondStep from '@/components/icons/SecondStep.vue';
 import ThirdStep from '@/components/icons/ThirdStep.vue';
 
-import api from '@/services/index';
-
-
 export default {
   name: 'Home',
 
@@ -124,6 +121,7 @@ export default {
 .home__step > span,
 .home__login > h4 {
   background: var(--grad-pink-inv);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
