@@ -1,5 +1,5 @@
 <template>
-  <AlbumForm @submit="editAlbum">
+  <AlbumForm type="edit">
     <template #submitText>
       Editar álbum
     </template>
@@ -21,7 +21,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['getAlbumById', 'editAlbum']),
+    ...mapActions(['getAlbumById']),
     ...mapMutations(['setAlbumToForm']),
     ...mapGetters(['getAlbum']),
   },

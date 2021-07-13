@@ -54,6 +54,12 @@ export default {
   components: {
     CButton
   },
+  props: {
+    type: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       steps: [
@@ -73,13 +79,22 @@ export default {
         this.currentStep++;
       }
     },
-    submitAlbum() {
+    async submitAlbum() {
       if (this.$refs.currentStep.validate()) {
-        this.$emit('submit')
+
+        if (this.type === 'create') {
+          await this.createAlbum();
+        } else {
+          await this.editAlbum();
+        };
+
         this.$router.push({ name: "Albums" });
       }
     },
-    ...mapActions(['getInterviews', 'setAlbumSelected'])
+    ...mapActions([
+        'getInterviews', 'setAlbumSelected',
+        'createAlbum', 'editAlbum'
+      ]),
   },
   computed: {
     ...mapGetters(['getSelectedInterviews'])
