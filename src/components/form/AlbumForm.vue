@@ -53,7 +53,7 @@ export default {
   name: 'NewAlbum',
   components: {
     CButton
-  }
+  },
   data() {
     return {
       steps: [
