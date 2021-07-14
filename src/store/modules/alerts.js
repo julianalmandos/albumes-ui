@@ -1,6 +1,7 @@
 const alertsStore = {
   state: {
-    alerts: []
+    alerts: [],
+    currentIndex: 0
   },
   getters: {
     getAlerts(state) {
@@ -9,9 +10,9 @@ const alertsStore = {
   },
   mutations: {
     addAlert(state, { msg, variant }) {
-      const index = state.alerts.length;
+      let index;
       state.alerts.push({
-        id: index,
+        id: index = state.currentIndex++,
         msg,
         variant: variant || 'success'
       });
