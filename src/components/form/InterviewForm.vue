@@ -15,7 +15,7 @@
 
     <transition name="fade">
       <form class="new_interview__form" @submit.prevent="submit" v-show="isFormVisible">
-        <CInput class="new_interview__form_input">
+        <CInput>
           <template #label>¡Ponle un nombre!</template>
           <input
             class="interview__name"
@@ -27,7 +27,7 @@
           >
         </CInput>
 
-        <CInput class="new_interview__form_input">
+        <CInput>
           <template #label>¡Ingresa el código de Youtube de la entrevista!</template>
           <input
             class="interview__code"
@@ -146,15 +146,6 @@
   }
 </script>
 <style>
-  .interview__code,
-  .interview__name {
-    border: none;
-    border-radius: 0 0 11px 11px;
-    text-align: center;
-    text-align-last:center;
-    padding: 0.75rem;
-  }
-
   .new_interview {
     display: flex;
     flex-direction: column;
@@ -167,22 +158,6 @@
     width: 100%;
   }
 
-  .new_interview__form {
-    display: flex;
-    gap: 1rem;
-    padding-top: 1rem;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .new_interview__form_buttons {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-around;
-    gap: 0.4rem;
-  }
-
   .new_interview__header {
     display: flex;
     gap: 1rem;
@@ -191,6 +166,31 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+  }
+
+  .new_interview__form {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .interview__code,
+  .interview__name {
+    border: none;
+    border-radius: 0 0 11px 11px;
+    text-align: center;
+    text-align-last:center;
+    padding: 0.75rem;
+  }
+
+  .new_interview__form_buttons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+    gap: 0.4rem;
   }
 
   .new_interview__form_submit {

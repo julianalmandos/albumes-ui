@@ -1,6 +1,5 @@
 import api from '@/services/index';
 import Vue from 'vue';
-import { getField, updateField } from 'vuex-map-fields';
 
 
 function getDefaultData() {
@@ -105,15 +104,14 @@ const album = {
     },
     addInterview(state, interview) {
       state.interviews = [interview, ...state.interviews]
-    },
-    updateField
+    }
   },
 
   actions: {
     async getInterviews({ commit, state }) {
       const { interviews } = state;
       if (!interviews.length) {
-        const interviews = await api.getInterviews( );
+        const interviews = await api.getInterviews();
         commit('setInterviews', interviews);
       }
     },
@@ -136,8 +134,6 @@ const album = {
         state.interviewName,
         state.interviewCode
       );
-
-      console.log(newInterview);
 
       commit("addInterview", newInterview);
       commit("resetInterviewData");

@@ -7,7 +7,7 @@ export const isValidYoutubeCode = async (code) => {
   const checkUrl = `https://www.youtube.com/oembed?url=${videoUrl}`
 
   try {
-    await axios.get(checkUrl);
+    await axios.head(checkUrl);
     return true;
   } catch {
     return false;
