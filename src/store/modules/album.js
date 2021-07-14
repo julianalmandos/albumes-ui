@@ -1,9 +1,13 @@
 import api from '@/services/index';
 import Vue from 'vue';
+import { getField, updateField } from 'vuex-map-fields';
+
 
 function getDefaultData() {
   return {
     interviews: [],
+    interviewName: "",
+    interviewCode: "",
     selectedInterviews: [],
     albumName: '',
     qrPosition: 'TOP_LEFT',
@@ -33,6 +37,12 @@ const album = {
     },
     isAlbumNotified(state) {
       return state.isAlbumNotified;
+    },
+    getInterviewName(state) {
+      return state.interviewName;
+    },
+    getInterviewCode(state) {
+      return state.interviewCode;
     }
   },
 
@@ -45,6 +55,10 @@ const album = {
     },
     resetData(state) {
       Object.assign(state, getDefaultData());
+    },
+    resetInterviewData(state) {
+      state.interviewName = "";
+      state.interviewCode = "";
     },
     albumNotified(state) {
       state.isAlbumNotified = true;
@@ -60,6 +74,12 @@ const album = {
     },
     setInterviews(state, interviews) {
       state.interviews = interviews;
+    },
+    setInterviewCode(state, code) {
+      state.interviewCode = code;
+    },
+    setInterviewName(state, name) {
+      state.interviewName = name;
     },
     toggleSelection(state, interviewId) {
       const interviewIndex = state.selectedInterviews.indexOf(interviewId);
@@ -82,7 +102,11 @@ const album = {
       selectedInterviews[index + 1] = selectedInterviews[index];
       selectedInterviews[index] = previous;
       Vue.set(state, 'selectedInterviews', selectedInterviews);
-    }
+    },
+    addInterview(state, interview) {
+      state.interviews = [interview, ...state.interviews]
+    },
+    updateField
   },
 
   actions: {
@@ -106,6 +130,17 @@ const album = {
       );
 
       commit('setAlbumToForm', editedAlbum);
+    },
+    async createInterview({ commit, state }) {
+      const newInterview = await api.createInterview(
+        state.interviewName,
+        state.interviewCode
+      );
+
+      console.log(newInterview);
+
+      commit("addInterview", newInterview);
+      commit("resetInterviewData");
     }
   }
 }

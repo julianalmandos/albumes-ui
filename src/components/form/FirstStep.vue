@@ -2,6 +2,9 @@
   <Layout>
     <template #title>1° Selecciona</template>
     <template #subtitle>los videos que desees agregar a tu álbum.</template>
+
+    <InterviewForm />
+    
     <ul class="interviews">
       <li :class="['interview', { 'interview--selected': isSelected(interview.id) }]" v-for="(interview, index) in getInterviews" :key="index">
         <youtube
@@ -25,12 +28,13 @@
 
 <script>
 import Layout from '@/components/Layout.vue';
+import InterviewForm from '@/components/form/InterviewForm.vue';
 import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'FirstStep',
   components: {
-    Layout
+     Layout, InterviewForm
   },
   computed: {
     ...mapGetters(['getInterviews', 'getSelectedInterviews']),

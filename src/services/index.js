@@ -10,6 +10,17 @@ api.getInterviews = async () => {
   return response.data
 }
 
+api.createInterview = async (name, code) => {
+  const response = await api.post('interviews/', {
+    name,
+    youtube_video: {
+      code
+    }
+  });
+
+  return response.data
+}
+
 api.getAlbums = async () => {
   const response = await api.get('albums/')
   return response.data
