@@ -59,6 +59,7 @@
 import CButton from '@/components/CButton.vue';
 import Navbar from '@/components/Navbar.vue';
 
+import { mapActions } from 'vuex';
 import { mapFields } from 'vuex-map-fields';
 
 export default {
@@ -87,8 +88,11 @@ export default {
         this.showMenu = false;
       }
     });
+
+    this.getUser();
   },
   methods: {
+    ...mapActions(['getUser']),
     logoutUser() {
       this.$store.dispatch('logout');
       this.$router.push('/');

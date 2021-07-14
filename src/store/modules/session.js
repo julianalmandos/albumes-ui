@@ -22,7 +22,7 @@ const session = {
     },
     isUserLoaded(state, getters) {
       const { getSettings: settings } = getters;
-      return Object.keys(settings).length === 0;
+      return Object.keys(settings).length !== 0;
     },
     isUserLoggedIn(state, getters) {
       // FIXME - e.g.: If someone modify the user token from the local storage
@@ -60,9 +60,9 @@ const session = {
     },
 
     async getUser({ commit, getters }) {
-      const { getUser: user, isUserLoaded } = getters;
+      const { getUser: user, isUserLoaded, isUserLoggedIn } = getters;
 
-      if (isUserLoaded) {
+      if (isUserLoggedIn && !isUserLoaded) {
         const newUser = await api.getUser(user.id);
         commit('setUser', newUser);
       }
