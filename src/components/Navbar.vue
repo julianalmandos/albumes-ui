@@ -100,6 +100,7 @@ export default {
   font-family: var(--font-tertiary);
   font-weight: bold;
   padding-top: 1rem;
+  color: var(--bg-button);
 }
 
 .navbar__menu {

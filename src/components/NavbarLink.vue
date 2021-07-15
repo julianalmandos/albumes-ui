@@ -25,11 +25,11 @@ export default {
 
   font-weight: bold;
   text-decoration: none;
-  color: #033e4f;
+  color: var(--bg-button);
 }
 
 .anchor:hover {
-  color: #e6f8ff;
+  color: var(--bg-button-hover);
   transition: color 0.2s ease-in-out;
   -moz-transition: color 0.2s ease-in-out;
   -webkit-transition: color 0.2s ease-in-out;
