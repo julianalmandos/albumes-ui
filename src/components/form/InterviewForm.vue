@@ -2,7 +2,7 @@
   <div class="new_interview">
 
     <header class="new_interview__header" v-show="!isFormVisible">
-      <h3>¿No aparece la entrevista que querés en el listado?</h3>
+      <h3>¿No aparece la entrevista que quieres en el listado?</h3>
       <CButton @click="showForm">
         <template #left-icon>
           <slot name="submitIcon">
