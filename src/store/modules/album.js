@@ -42,6 +42,13 @@ const album = {
     },
     getInterviewCode(state) {
       return state.interviewCode;
+    },
+    existsInterview(state) {
+      const { interviews, interviewCode } = state;
+      
+      return interviews.some(
+        ({ youtube_video }) => youtube_video.code === interviewCode
+      );
     }
   },
 
