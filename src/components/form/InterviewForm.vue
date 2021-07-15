@@ -111,14 +111,22 @@
         'setInterviewCode',
         'addAlert'
       ]),
+      ...mapGetters(['existsInterview']),
       async submit() {
-
+        
         if (!this.interviewName) {
           const error = 'Por favor, ingrese un nombre para la entrevista.';
           this.showError(error, this.$refs.name);
 
           return;
         };
+
+        if (this.existsInterview()) {
+          const error = 'La entrevista ya existe en el listado.';
+          this.showError(error, this.$refs.code);
+
+          return;
+        }
 
         if (!await isValidYoutubeCode(this.interviewCode)) {
           const error = 'Por favor, verifique el código del video.';
