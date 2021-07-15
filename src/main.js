@@ -4,6 +4,7 @@ import Vue from 'vue'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 import router from './router'
 import store from './store'
+import { loadTheme } from './utils/ThemeHelper.js'
 
 require('./assets/reset.css');
 require('./assets/root.css');
@@ -21,5 +22,8 @@ Vue.use(GAuth, gauthOption)
 new Vue({
   router,
   store,
+  beforeCreate() {
+    loadTheme();
+  },
   render: h => h(App)
 }).$mount('#app')

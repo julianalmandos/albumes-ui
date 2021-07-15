@@ -1,5 +1,6 @@
 import api from '@/services/index';
 import { getField, updateField } from 'vuex-map-fields';
+import { setTheme } from '@/utils/ThemeHelper.js';
 
 const session = {
   state: {
@@ -71,7 +72,7 @@ const session = {
     async updateUser({ commit, getters }) {
       const { getUser: user } = getters;
       const userModified = await api.updateUser(user);
-
+      setTheme(user.settings.color_mode);
       commit('setUser', userModified);
     },
   }
