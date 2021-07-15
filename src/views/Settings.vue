@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #title>Configuración</template>
-    <template #subtitle>Configure aspectos generales de la plataforma como el modo de color, el tamaño de la letra o el número de elementos por página.</template>
+    <template #subtitle>Configure aspectos generales de la plataforma como, por ejemplo, el modo de color.</template>
     <form class="settings" @submit.prevent="saveSettings">
       <CSelect
         :label="'Colores'"
