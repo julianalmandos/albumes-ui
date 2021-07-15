@@ -1,9 +1,9 @@
 <template>
   <div class="new_interview">
 
-    <header class="new_interview__header" v-show="!isFormVisible" @click="showForm">
+    <header class="new_interview__header" v-show="!isFormVisible">
       <h3>¿No aparece la entrevista que querés en el listado?</h3>
-      <CButton>
+      <CButton @click="showForm">
         <template #left-icon>
           <slot name="submitIcon">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
