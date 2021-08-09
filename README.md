@@ -1,6 +1,6 @@
 # Álbumes-UI
 
-![Álbumes logo](../../practica/logo.png)
+![Álbumes logo](doc/logo.png)
 
 Frontend for managing natural disasters albums!
 
