@@ -18,7 +18,7 @@
           <template #title>Mis álbumes</template>
         </NavbarLink>
       </nav>
-      <div v-if="!isHome" class="navbar__user">
+      <div v-if="!isHome" class="navbar__user" tabindex="0">
         <div class="navbar__settings">
           <svg
             xmlns="http://www.w3.org/2000/svg"

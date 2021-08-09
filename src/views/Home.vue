@@ -1,61 +1,78 @@
 <template>
   <div class="home">
-    <h2 class="home__title">¡Bienvenido a Álbumes!</h2>
-    <h3 class="home__subtitle">Crea, elige e imprime tus propios álbumes para concientizar a la población sobre desastres naturales.</h3>
+    <h2 class="home__title" tabindex="0">¡Bienvenido a Álbumes!</h2>
+    <h3 class="home__subtitle" tabindex="0">
+      Crea, elige e imprime tus propios álbumes para concientizar a la población
+      sobre desastres naturales.
+    </h3>
     <ol class="home__steps">
-      <li class="home__step">
-        <FirstStep />        
+      <li class="home__step" tabindex="0">
+        <FirstStep />
         <p>Crea un álbum interactivo con fotos y códigos QR accesibles.</p>
       </li>
-      <li class="home__step">
+      <li class="home__step" tabindex="0">
         <SecondStep />
-        <p>Elige entre las más de 10 entrevistas a sobrevivientes de desastres naturales.</p>
+        <p>
+          Elige entre las más de 10 entrevistas a sobrevivientes de desastres
+          naturales.
+        </p>
       </li>
-      <li class="home__step">
+      <li class="home__step" tabindex="0">
         <ThirdStep />
         <p>Imprime tu álbum de fotos junto a los códigos QR relacionados.</p>
       </li>
     </ol>
     <div class="home__login">
-      <h4>¡Comienza ya!</h4>
-        <CButton variant="red squared" @click="loginWithGoogle">
-          <template #left-icon>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 11v2.4h3.97c-.16 1.029-1.2 3.02-3.97 3.02-2.39 0-4.34-1.979-4.34-4.42 0-2.44 1.95-4.42 4.34-4.42 1.36 0 2.27.58 2.79 1.08l1.9-1.83c-1.22-1.14-2.8-1.83-4.69-1.83-3.87 0-7 3.13-7 7s3.13 7 7 7c4.04 0 6.721-2.84 6.721-6.84 0-.46-.051-.81-.111-1.16h-6.61zm0 0 17 2h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
-          </template>
-          Continuar con Google
-        </CButton>
+      <h4 tabindex="0">¡Comienza ya!</h4>
+      <CButton variant="red squared" @click="loginWithGoogle">
+        <template #left-icon>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 11v2.4h3.97c-.16 1.029-1.2 3.02-3.97 3.02-2.39 0-4.34-1.979-4.34-4.42 0-2.44 1.95-4.42 4.34-4.42 1.36 0 2.27.58 2.79 1.08l1.9-1.83c-1.22-1.14-2.8-1.83-4.69-1.83-3.87 0-7 3.13-7 7s3.13 7 7 7c4.04 0 6.721-2.84 6.721-6.84 0-.46-.051-.81-.111-1.16h-6.61zm0 0 17 2h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </template>
+        Continuar con Google
+      </CButton>
     </div>
   </div>
 </template>
 
 <script>
-import CButton from '@/components/CButton.vue';
+import CButton from "@/components/CButton.vue";
 
-import FirstStep from '@/components/icons/FirstStep.vue';
-import SecondStep from '@/components/icons/SecondStep.vue';
-import ThirdStep from '@/components/icons/ThirdStep.vue';
+import FirstStep from "@/components/icons/FirstStep.vue";
+import SecondStep from "@/components/icons/SecondStep.vue";
+import ThirdStep from "@/components/icons/ThirdStep.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
 
   components: {
     CButton,
     FirstStep,
     SecondStep,
-    ThirdStep
+    ThirdStep,
   },
 
   methods: {
     async loginWithGoogle() {
       const authCode = await this.$gAuth.getAuthCode();
-      await this.$store.dispatch('loginWithGoogle', authCode);
-      
+      await this.$store.dispatch("loginWithGoogle", authCode);
+
       if (this.$store.getters.isUserLoggedIn) {
-        this.$router.push({ name: 'Dashboard' })
+        this.$router.push({ name: "Dashboard" });
       }
-    }
+    },
   },
-}
+};
 </script>
 
 <style>

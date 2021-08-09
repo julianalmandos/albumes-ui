@@ -1,25 +1,47 @@
 <template>
   <Layout>
-    <template #title>1° Selecciona</template>
+    <template #title>1. Selecciona</template>
     <template #subtitle>los videos que desees agregar a tu álbum.</template>
 
     <InterviewForm />
-    
+
     <ul class="interviews">
-      <li :class="['interview', { 'interview--selected': isSelected(interview.id) }]" v-for="(interview, index) in getInterviews" :key="index">
+      <li
+        :class="[
+          'interview',
+          { 'interview--selected': isSelected(interview.id) },
+        ]"
+        v-for="(interview, index) in getInterviews"
+        :key="index"
+      >
         <youtube
-          :video-id="interview.youtube_video.code">
+          :video-id="interview.youtube_video.code"
+          :aria-label="interview.name"
+          tabindex="0"
+        >
         </youtube>
         <button
           @click="toggleSelection(interview.id)"
-          :class="['interview__button', { 'interview__button--selected': isSelected(interview.id) }]"
+          :class="[
+            'interview__button',
+            { 'interview__button--selected': isSelected(interview.id) },
+          ]"
           type="button"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24">
-            <path v-if="isSelected(interview.id)" d="M0 10h24v4h-24z"/>
-            <path v-else d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="20"
+            viewBox="0 0 24 24"
+          >
+            <path v-if="isSelected(interview.id)" d="M0 10h24v4h-24z" />
+            <path v-else d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
           </svg>
-          {{isSelected(interview.id) ? 'Deseleccionar' : 'Seleccionar' | capitalize}}
+          {{
+            isSelected(interview.id)
+              ? "Deseleccionar"
+              : "Seleccionar" | capitalize
+          }}
         </button>
       </li>
     </ul>
@@ -27,34 +49,35 @@
 </template>
 
 <script>
-import Layout from '@/components/Layout.vue';
-import InterviewForm from '@/components/form/InterviewForm.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import Layout from "@/components/Layout.vue";
+import InterviewForm from "@/components/form/InterviewForm.vue";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: 'FirstStep',
+  name: "FirstStep",
   components: {
-     Layout, InterviewForm
+    Layout,
+    InterviewForm,
   },
   computed: {
-    ...mapGetters(['getInterviews', 'getSelectedInterviews']),
+    ...mapGetters(["getInterviews", "getSelectedInterviews"]),
     isSelected() {
       return (id) => this.getSelectedInterviews.includes(id);
-    }
+    },
   },
   filters: {
     capitalize(value) {
       return value.toUpperCase();
-    }
+    },
   },
   methods: {
-    ...mapMutations({ 'toggleSelectionMutation': 'toggleSelection' }),
-    ...mapMutations(['addAlert']),
+    ...mapMutations({ toggleSelectionMutation: "toggleSelection" }),
+    ...mapMutations(["addAlert"]),
     validate() {
       if (!this.getSelectedInterviews.length) {
         this.addAlert({
-          msg: 'Por favor, seleccione al menos una entrevista.',
-          variant: 'error'
+          msg: "Por favor, seleccione al menos una entrevista.",
+          variant: "error",
         });
         return false;
       }
@@ -62,9 +85,9 @@ export default {
     },
     toggleSelection(interviewId) {
       this.toggleSelectionMutation(interviewId);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>

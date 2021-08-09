@@ -6,8 +6,11 @@
     <GalleryThumbnail :thumbnails="thumbnails" />
     <div class="album__information">
       <div class="album__description">
-        <h3 class="album__title">{{ album.name }}</h3>
-        <p class="album__date">Armado el día {{ parsedDate }}</p>
+        <h3 class="album__title" tabindex="0">{{ album.name }}</h3>
+        <p class="album__date" tabindex="0">
+          Armado el día
+          <time :datetime="parsedDate">{{ humanReadableDate }}</time>
+        </p>
       </div>
       <div class="album__actions">
         <div class="album__edition">
@@ -105,6 +108,18 @@ export default {
   computed: {
     parsedDate() {
       return this.album.created.split("T")[0].split("-").reverse().join("/");
+    },
+    humanReadableDate() {
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+
+      const date = new Date(this.album.created);
+
+      return date.toLocaleDateString(undefined, options);
     },
     youtubeVideo() {
       return this.album.interviews[0].youtube_video.code;

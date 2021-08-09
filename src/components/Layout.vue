@@ -1,9 +1,9 @@
 <template>
-  <div class="section">
-    <h2 class="section__title" v-if="hasTitleSlot">
+  <div class="section" tabindex="0" v-focus>
+    <h2 class="section__title" v-if="hasTitleSlot" tabindex="0">
       <slot name="title"></slot>
     </h2>
-    <h3 class="section__subtitle" v-if="hasSubtitleSlot">
+    <h3 class="section__subtitle" v-if="hasSubtitleSlot" tabindex="0">
       <slot name="subtitle"></slot>
     </h3>
     <slot class="section__content"></slot>
@@ -12,16 +12,16 @@
 
 <script>
 export default {
-  name: 'Layout',
+  name: "Layout",
   computed: {
     hasTitleSlot() {
-      return !!this.$slots['title']
+      return !!this.$slots["title"];
     },
     hasSubtitleSlot() {
-      return !!this.$slots['subtitle']      
-    }
-  }
-}
+      return !!this.$slots["subtitle"];
+    },
+  },
+};
 </script>
 
 <style>
@@ -49,8 +49,8 @@ export default {
 
 @media (max-width: 720px) {
   .section {
-   padding-left: 0;
-   padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 </style>

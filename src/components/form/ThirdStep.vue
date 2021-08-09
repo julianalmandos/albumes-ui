@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <template #title>3° Finaliza</template>
+    <template #title>3. Finaliza</template>
     <template #subtitle>tu álbum.</template>
     <div class="information">
       <CInput name="interviewName">

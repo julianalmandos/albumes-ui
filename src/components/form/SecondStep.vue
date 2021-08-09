@@ -1,37 +1,61 @@
 <template>
   <Layout>
-    <template #title>2° Ordena</template>
+    <template #title>2. Ordena</template>
     <template #subtitle>tu álbum.</template>
     <ol class="selected-interviews">
-      <li class="selected-interview" v-for="(interview, index) in getSelectedInterviews" :key="interview.id">
-        <span class="selected-interview__number">{{index + 1}}.</span>
+      <li
+        class="selected-interview"
+        v-for="(interview, index) in getSelectedInterviews"
+        :key="interview.id"
+      >
+        <span class="selected-interview__number" tabindex="0"
+          >{{ index + 1 }}.</span
+        >
 
-        <div class="selected-interview__thumbnail" >
-          <img             
+        <div class="selected-interview__thumbnail" tabindex="0">
+          <img
             :alt="interview.name + ' video'"
-            :src="interview.youtube_video.thumbnail"/>
+            :src="interview.youtube_video.thumbnail"
+          />
         </div>
 
         <div class="selected-interview__buttons">
-          <!--SVGs inside this container should have an ALT text or sth for a11y-->
-
-          <button 
-            class="selected-interview__button" 
-            v-if="index !== 0" @click="moveUp(index)" type="button">
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z"/></svg>
+          <button
+            class="selected-interview__button"
+            v-if="index !== 0"
+            @click="moveUp(index)"
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z"
+              />
+            </svg>
             <span>Mover hacia arriba</span>
-
           </button>
 
-          <button 
-            class="selected-interview__button" 
-            v-if="index !== getSelectedInterviews.length - 1" 
-            @click="moveDown(index)" type="button">
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg>
+          <button
+            class="selected-interview__button"
+            v-if="index !== getSelectedInterviews.length - 1"
+            @click="moveDown(index)"
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"
+              />
+            </svg>
             <span>Mover hacia abajo</span>
-
           </button>
         </div>
       </li>
@@ -40,23 +64,25 @@
 </template>
 
 <script>
-import Layout from '@/components/Layout.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import Layout from "@/components/Layout.vue";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: 'SecondStep',
+  name: "SecondStep",
   components: {
-    Layout
+    Layout,
   },
   computed: {
-    ...mapGetters(['getInterviews']),
-    ...mapGetters({'getSelectedInterviewsIndexes': 'getSelectedInterviews'}),
+    ...mapGetters(["getInterviews"]),
+    ...mapGetters({ getSelectedInterviewsIndexes: "getSelectedInterviews" }),
     getSelectedInterviews() {
-      return this.getSelectedInterviewsIndexes.map(interviewId => this.getInterviews.find(interview => interview.id === interviewId));
-    }
+      return this.getSelectedInterviewsIndexes.map((interviewId) =>
+        this.getInterviews.find((interview) => interview.id === interviewId)
+      );
+    },
   },
   methods: {
-    ...mapMutations(['moveInterviewUp', 'moveInterviewDown']),
+    ...mapMutations(["moveInterviewUp", "moveInterviewDown"]),
     validate() {
       return true;
     },
@@ -66,9 +92,9 @@ export default {
     },
     moveDown(interviewIndex) {
       this.moveInterviewDown(interviewIndex);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>

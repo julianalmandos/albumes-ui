@@ -18,6 +18,11 @@ const gauthOption = {
 }
 Vue.use(GAuth, gauthOption)
 
+Vue.directive('focus', {
+  inserted: function (element) {
+    element.focus()
+  }
+})
 
 new Vue({
   router,
