@@ -1,9 +1,10 @@
 <template>
   <CInput :name="name">
-    <template #label>{{label}}</template>
+    <template #label>{{ label }}</template>
     <select
       class="select"
       :name="name"
+      :id="name"
       :value="value"
       @change="$emit('input', $event.target.value)"
     >
@@ -11,33 +12,36 @@
         v-for="(option, index) in options"
         :key="index"
         :value="option.value"
-      >{{option.label}}</option>
+        :selected="true"
+      >
+        {{ option.label }}
+      </option>
     </select>
   </CInput>
 </template>
 
 <script>
-import CInput from '@/components/CInput.vue';
+import CInput from "@/components/CInput.vue";
 
 export default {
-  name: 'CSelect',
+  name: "CSelect",
   components: {
-    CInput
+    CInput,
   },
   props: {
     name: {
-      type: String
+      type: String,
     },
     label: {
-      type: String
+      type: String,
     },
     value: {},
     options: {
       type: Array,
-      default: () => []
-    }
-  }
-}
+      default: () => [],
+    },
+  },
+};
 </script>
 
 <style>
@@ -45,7 +49,7 @@ export default {
   border: none;
   border-radius: 0 0 11px 11px;
   text-align: center;
-  text-align-last:center; /* For Chrome */
+  text-align-last: center; /* For Chrome */
   padding: 0.75rem;
 }
 

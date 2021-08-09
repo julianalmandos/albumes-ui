@@ -1,10 +1,14 @@
 <template>
   <Layout>
     <template #title>Configuración</template>
-    <template #subtitle>Configure aspectos generales de la plataforma como, por ejemplo, el modo de color.</template>
+    <template #subtitle
+      >Configure aspectos generales de la plataforma como, por ejemplo, el modo
+      de color.</template
+    >
     <form class="settings" @submit.prevent="saveSettings">
       <CSelect
         :label="'Colores'"
+        :name="'colors'"
         :options="colorsOptions"
         v-model="color_mode"
       ></CSelect>
@@ -19,46 +23,44 @@
 </template>
 
 <script>
-import CButton from '@/components/CButton.vue';
-import CSelect from '@/components/CSelect.vue';
-import Layout from '@/components/Layout.vue';
-import * as Settings from '@/utils/SettingsUtils.js';
+import CButton from "@/components/CButton.vue";
+import CSelect from "@/components/CSelect.vue";
+import Layout from "@/components/Layout.vue";
+import * as Settings from "@/utils/SettingsUtils.js";
 
-import { mapFields } from 'vuex-map-fields';
-import { mapActions, mapMutations } from 'vuex';
+import { mapFields } from "vuex-map-fields";
+import { mapActions, mapMutations } from "vuex";
 
 export default {
-  name: 'Settings',
+  name: "Settings",
   components: {
     CButton,
     CSelect,
-    Layout
+    Layout,
   },
   data() {
     return {
-      colorsOptions: Settings.getColorModeOptions()
-    }
+      colorsOptions: Settings.getColorModeOptions(),
+    };
   },
   computed: {
-    ...mapFields([
-      'user.settings.color_mode',
-    ])
+    ...mapFields(["user.settings.color_mode"]),
   },
   methods: {
-    ...mapActions(['getUser', 'updateUser']),
-    ...mapMutations(['addAlert']),
+    ...mapActions(["getUser", "updateUser"]),
+    ...mapMutations(["addAlert"]),
     saveSettings() {
       this.updateUser();
       this.$router.go(-1);
       this.addAlert({
-        msg: 'Configuración editada exitosamente!'
+        msg: "Configuración editada exitosamente!",
       });
-    }
+    },
   },
   mounted() {
-    this.getUser()
-  }
-}
+    this.getUser();
+  },
+};
 </script>
 
 <style>

@@ -9,11 +9,11 @@
 
 <script>
 export default {
-  name: 'CInput',
+  name: "CInput",
   props: {
-    name: String
-  }
-}
+    name: String,
+  },
+};
 </script>
 
 <style>

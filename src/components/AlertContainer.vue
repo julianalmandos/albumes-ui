@@ -1,22 +1,50 @@
 <template>
   <transition-group class="alerts" name="alerts" tag="div">
-    <div :class="['alert', alert.variant]" v-for="alert in getAlerts" :key="alert.id">
-      <svg v-if="alert.variant === 'success'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
-      <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 5.177l8.631 15.823h-17.262l8.631-15.823zm0-4.177l-12 22h24l-12-22zm-1 9h2v6h-2v-6zm1 9.75c-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25 1.25.56 1.25 1.25-.561 1.25-1.25 1.25z"/></svg>
+    <div
+      :class="['alert', alert.variant]"
+      v-for="alert in getAlerts"
+      :key="alert.id"
+      role="alert"
+      aria-atomic="true"
+    >
+      <svg
+        v-if="alert.variant === 'success'"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <title>Éxito</title>
+        <path
+          d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"
+        />
+      </svg>
+      <svg
+        v-else
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <title>Error</title>
+        <path
+          d="M12 5.177l8.631 15.823h-17.262l8.631-15.823zm0-4.177l-12 22h24l-12-22zm-1 9h2v6h-2v-6zm1 9.75c-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25 1.25.56 1.25 1.25-.561 1.25-1.25 1.25z"
+        />
+      </svg>
       {{ alert.msg }}
     </div>
   </transition-group>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'AlertContainer',
+  name: "AlertContainer",
   computed: {
-    ...mapGetters(['getAlerts'])
-  }
-}
+    ...mapGetters(["getAlerts"]),
+  },
+};
 </script>
 
 <style>
@@ -51,10 +79,12 @@ export default {
   background-color: var(--bg-button-red);
 }
 
-.alerts-enter-active, .alerts-leave-active {
-  transition: all .2s;
+.alerts-enter-active,
+.alerts-leave-active {
+  transition: all 0.2s;
 }
-.alerts-enter, .alerts-leave-to {
+.alerts-enter,
+.alerts-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }
