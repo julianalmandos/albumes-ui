@@ -64,8 +64,8 @@ export default {
   align-items: center;
   padding: 0.75rem 1.5rem;
   background-color: var(--bg-button);
-  fill: var(--bg-primary);
-  color: var(--bg-primary);
+  fill: white;
+  color: white;
   border-radius: 7px;
   font-size: clamp(0.7rem, 3vw, 0.8rem);
 }

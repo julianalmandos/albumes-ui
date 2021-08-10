@@ -226,8 +226,8 @@ export default {
 .navbar--collapsed__link--red {
   cursor: pointer;
   background-color: var(--bg-button-red);
-  color: var(--bg-primary);
-  fill: var(--bg-primary);
+  color: white;
+  fill: white;
 }
 
 .navbar--collapsed__link--red:hover {

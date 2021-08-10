@@ -8,6 +8,45 @@
   --bg-primary: #D8E3E7;
   --bg-secondary: #EEEEEE9C;
   --bg-tertiary: #DEF5FE;
+  --bg-navbar: #ADD0D8;
+  --bg-button: #385861;
+  --bg-button-hover: #2d5561;
+  --bg-button-red: #b44242;
+  --bg-loader: '#2C6778';
+  --bg-button-red-hover: #c53030;
+  --bg-button-white: #D8E3E7;
+  --bg-button-white-hover: #bbc6ca;
+  --bg-gray: #bac1c3;
+  --text-primary: rgb(78, 78, 78);
+  --text-secondary: #474747;
+  --text-navbar: #547b86;
+  --text-loader: #477d8b;
+  --text-highlighted: #3999ff;
+  --bg-violet: #b8a1fc;
+  --bg-button-blue: #a8e0ee;
+  --bg-button-blue-hover: #84c9da;
+  --bg-button-grey: #3838381a;
+  --bg-button-grey-hover: #00000010;
+
+  /* Other */
+  --grad-pink: linear-gradient(180deg, rgb(239, 93, 168, 1) 0%, rgba(18, 110, 130, 1) 100%);
+  --grad-pink-inv: linear-gradient(0deg, rgb(239, 93, 168, 1) 0%, rgba(18, 110, 130, 1) 100%);
+  --grad-orange: linear-gradient(180deg, rgba(255, 134, 134, 1) 0%, rgba(18, 110, 130, 1) 100%);
+  --grad-violet: linear-gradient(180deg, rgba(165, 134, 255, 1) 0%, rgba(18, 110, 130, 1) 100%);
+
+  --shadow-button: 0px 2px 4px rgba(0, 0, 0, 0.25);
+
+  /* Fonts */
+  --font-primary: Montserrat, sans-serif;
+  --font-secondary: Lato, sans-serif;
+  --font-tertiary: Charmonman, sans-serif;
+  --font-quaternary: Montez, sans-serif;
+}
+
+html[data-theme="high-contrast"] {
+  --bg-primary: #D8E3E7;
+  --bg-secondary: #EEEEEE9C;
+  --bg-tertiary: #DEF5FE;
   --bg-navbar: #a3d0da;
   --bg-button: #132C33;
   --bg-button-hover: #1a3e49;
@@ -27,20 +66,6 @@
   --bg-button-blue-hover: #78c9dd;
   --bg-button-grey: #0000001a;
   --bg-button-grey-hover: #00000010;
-
-  /* Other */
-  --grad-pink: linear-gradient(180deg, rgb(239, 93, 168, 1) 0%, rgba(18, 110, 130, 1) 100%);
-  --grad-pink-inv: linear-gradient(0deg, rgb(239, 93, 168, 1) 0%, rgba(18, 110, 130, 1) 100%);
-  --grad-orange: linear-gradient(180deg, rgba(255, 134, 134, 1) 0%, rgba(18, 110, 130, 1) 100%);
-  --grad-violet: linear-gradient(180deg, rgba(165, 134, 255, 1) 0%, rgba(18, 110, 130, 1) 100%);
-
-  --shadow-button: 0px 2px 4px rgba(0, 0, 0, 0.25);
-
-  /* Fonts */
-  --font-primary: Montserrat, sans-serif;
-  --font-secondary: Lato, sans-serif;
-  --font-tertiary: Charmonman, sans-serif;
-  --font-quaternary: Montez, sans-serif;
 }
 
 html {

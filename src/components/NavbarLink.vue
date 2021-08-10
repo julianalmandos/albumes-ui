@@ -29,7 +29,7 @@ export default {
 }
 
 .anchor:hover {
-  color: var(--bg-button-hover);
+  color: var(--text-primary);
   transition: color 0.2s ease-in-out;
   -moz-transition: color 0.2s ease-in-out;
   -webkit-transition: color 0.2s ease-in-out;
