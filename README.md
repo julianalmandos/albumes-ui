@@ -31,5 +31,9 @@ npm run serve
 npm run build
 ```
 
+
+#### Configure oAuth
+Follow [this guide](https://developers.google.com/identity/protocols/oauth2).
+
 #### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
